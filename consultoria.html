@@ -5,7 +5,239 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultoria de Captação & IA | Entre Nós</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg: #030303;
+            --card-bg: #0a0a0a;
+            --accent: #ffffff;
+            --accent-muted: #888888;
+            --border: #1a1a1a;
+            --font-main: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--accent);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        #nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 2rem 0;
+            background: linear-gradient(to bottom, rgba(3,3,3,0.9), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+        }
+
+        .brand span { color: var(--accent-muted); }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--accent-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero */
+        .hero-sub {
+            padding: 15rem 4rem 10rem;
+            text-align: center;
+        }
+
+        .hero-sub h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-sub p {
+            font-size: 1.25rem;
+            color: var(--accent-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-muted);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .content-block h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-block p {
+            color: var(--accent-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .list-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .list-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-item p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Highlight Card */
+        .highlight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 4rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .highlight-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 1.25rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+            margin-top: 2rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: var(--accent-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 4rem;
+            border-top: 1px solid var(--border);
+            margin-top: 10rem;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand span { color: var(--accent-muted); }
+
+        .footer-links h4 {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--accent-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+        .footer-links a:hover { color: var(--accent-muted); }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .nav-inner, section, footer, .hero-sub { padding: 2rem; }
+            .hero-sub { padding-top: 10rem; }
+        }
+    </style>
 </head>
 <body>
     <nav id="nav">
@@ -17,97 +249,109 @@
                 <li><a href="remoto.html">Edição Remota</a></li>
                 <li><a href="presencial.html">Captação Presencial</a></li>
             </ul>
-            <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Tenho%20interesse%20na%20Consultoria." target="_blank" class="nav-cta">Fale com a Sukha</a>
         </div>
     </nav>
 
-    <section class="hero" style="min-height: 80vh;">
-        <div class="hero-inner">
-            <div class="badge">Workshop Prático • Consultoria IA • Suporte VIP</div>
-            <h1>Capacitando sua equipe para <br><span class="gradient-text">captar melhor</span> e usar IA.</h1>
-            <p class="hero-sub">O grande gargalo das imobiliárias é a inconsistência na qualidade das fotos. A solução não é apenas editar, é capacitar. Ensinamos seu time a extrair o máximo do celular que já está no bolso deles.</p>
-            <div class="hero-actions">
-                <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20Workshop." target="_blank" class="btn-primary">Agendar consultoria &rarr;</a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="g-item" style="height: 100%;">
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Consultoria e Treinamento">
-            </div>
-        </div>
-    </section>
+    <main>
+        <section class="hero-sub">
+            <h1>Capacitando Sua Equipe para Captar Melhor e Usar IA no Dia a Dia</h1>
+            <p>Transforme corretores em captadores de elite com técnicas profissionais de celular e ferramentas de Inteligência Artificial que otimizam a rotina da imobiliária.</p>
+        </section>
 
-    <section class="section-inner">
-        <div class="section-label">O que ensinamos</div>
-        <h2>Workshop de Captação e IA Imobiliária.</h2>
-        <div class="servicos-grid">
-            <div class="servico-card">
-                <div class="sc-num">01</div>
-                <h3>Técnicas de Fotografia</h3>
-                <p>Enquadramentos, ângulos profissionais e leitura de luz natural para valorizar cada ambiente.</p>
-                <ul>
-                    <li>Configuração ideal do celular</li>
-                    <li>Nivelamento e perspectiva</li>
-                    <li>Erros comuns e como evitá-los</li>
-                </ul>
+        <section id="workshop">
+            <div class="section-header">
+                <span>Módulo 1</span>
+                <h2>Workshop de Captação</h2>
             </div>
-            <div class="servico-card">
-                <div class="sc-num">02</div>
-                <h3>Inteligência Artificial</h3>
-                <p>Como utilizar ferramentas de IA para otimizar a rotina na imobiliária e criar apresentações de impacto.</p>
-                <ul>
-                    <li>Ferramentas de IA para corretores</li>
-                    <li>Prompts para descrição de imóveis</li>
-                    <li>Otimização de processos diários</li>
-                </ul>
+            <div class="content-grid">
+                <div class="content-block">
+                    <p>O primeiro passo para um imóvel ser desejado é uma captação impecável. Ensinamos o "olhar técnico" que faz a diferença entre um anúncio ignorado e uma visita agendada.</p>
+                    <div class="list-item">
+                        <h4>Configurações do Celular</h4>
+                        <p>Ajustes de exposição, HDR, grade e resolução para extrair o máximo de cada sensor.</p>
+                    </div>
+                    <div class="list-item">
+                        <h4>Leitura de Luz Natural</h4>
+                        <p>Como aproveitar o melhor horário do sol e lidar com sombras e luz dura.</p>
+                    </div>
+                    <div class="list-item">
+                        <h4>Enquadramento de Arquitetura</h4>
+                        <p>Regras de composição para valorizar a amplitude e os detalhes do imóvel.</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="list-item">
+                        <h4>Organização do Cenário</h4>
+                        <p>Técnicas rápidas de "home staging" para preparar o ambiente antes do clique.</p>
+                    </div>
+                    <div class="list-item">
+                        <h4>Estabilidade e Movimento</h4>
+                        <p>Como fazer vídeos suaves e profissionais para Reels e TikTok sem equipamentos caros.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section-inner" style="background: var(--bg2); border-radius: 40px; margin: 0 32px;">
-        <div class="section-label">O diferencial</div>
-        <h2>Suporte que garante o resultado.</h2>
-        <div class="problema-grid">
-            <div class="prob-item sc-featured">
-                <h4>15 Dias de Suporte</h4>
-                <p>Após as aulas, sua equipe terá suporte exclusivo e tira-dúvidas direto no WhatsApp para aplicar o conhecimento na prática.</p>
+        <section id="ia-rotina">
+            <div class="section-header">
+                <span>Módulo 2</span>
+                <h2>IA na Rotina Imobiliária</h2>
             </div>
-            <div class="prob-item">
-                <h4>Formato Flexível</h4>
-                <p>Treinamentos online ou presenciais, com conteúdo personalizado para a realidade da sua imobiliária.</p>
+            <div class="content-grid">
+                <div class="content-block">
+                    <h3>Otimização com Inteligência Artificial</h3>
+                    <p>A consultoria ensina a utilizar ferramentas de IA para acelerar processos que antes levavam horas.</p>
+                    <div class="list-item">
+                        <h4>Geração de Descrições</h4>
+                        <p>Copywriting magnético para portais imobiliários usando prompts otimizados.</p>
+                    </div>
+                    <div class="list-item">
+                        <h4>Edição Expressa com IA</h4>
+                        <p>Remoção de objetos indesejados e correção de céu em segundos.</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="list-item">
+                        <h4>Curadoria Inteligente</h4>
+                        <p>Como selecionar as melhores fotos de um lote de 50 imagens automaticamente.</p>
+                    </div>
+                    <div class="list-item">
+                        <h4>Suporte WhatsApp</h4>
+                        <p><strong>Bônus Exclusivo:</strong> 15 dias de suporte direto no WhatsApp para tirar dúvidas após as aulas.</p>
+                    </div>
+                </div>
             </div>
-            <div class="prob-item">
-                <h4>Visão de Mercado</h4>
-                <p>Baseado em 3 anos de experiência real dentro de imobiliárias, focando no que realmente converte.</p>
-            </div>
-        </div>
-    </section>
 
-    <footer id="footer">
+            <div class="highlight-card">
+                <h3>Pronto para subir o nível da sua imobiliária?</h3>
+                <p>Agende uma reunião para falarmos sobre a consultoria personalizada para sua equipe.</p>
+                <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Consultoria%20IA." class="btn">Agendar Reunião</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
         <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="index.html" class="brand">entre nós<span>.</span></a>
-                    <p>Fotografia imobiliária profissional e Virtual Home Staging com IA. Resultados em até 48h.</p>
-                </div>
-                <div class="footer-nav">
-                    <h5>Navegação</h5>
-                    <a href="index.html">Início</a>
-                    <a href="consultoria.html">Consultoria IA</a>
-                    <a href="remoto.html">Edição Remota</a>
-                    <a href="presencial.html">Captação Presencial</a>
-                </div>
-                <div class="footer-nav">
-                    <h5>Contato</h5>
-                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp: (11) 96172-6800</a>
-                    <a href="mailto:entrenos.solucoes@gmail.com">entrenos.solucoes@gmail.com</a>
-                    <a href="https://instagram.com/sukhacampos">Instagram: @sukhacampos</a>
-                    <p style="color: #666; font-size: .85rem; margin-top: 12px;">Ubatuba, SP — Atendimento nacional.</p>
-                </div>
+            <div class="footer-brand">
+                <h2>entre nós<span>.</span></h2>
+                <p>Sukha Campos da Entre Nós — O Futuro da Apresentação Imobiliária.</p>
             </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Entre Nós. Todos os direitos reservados.</span>
-                <span>Fotografia Imobiliária • Virtual Staging • Ubatuba</span>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="consultoria.html">Consultoria</a></li>
+                    <li><a href="remoto.html">Remoto</a></li>
+                    <li><a href="presencial.html">Presencial</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp</a></li>
+                    <li><a href="mailto:entrenos.solucoes@gmail.com">E-mail</a></li>
+                    <li><a href="https://instagram.com/sukhacampos">Instagram</a></li>
+                </ul>
             </div>
         </div>
     </footer>
