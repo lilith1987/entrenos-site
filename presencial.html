@@ -7,148 +7,223 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030303;
-            --card-bg: #0a0a0a;
-            --accent: #ffffff;
-            --accent-muted: #888888;
-            --border: #1a1a1a;
-            --font-main: 'Inter', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg: #0a0a0a;
+            --bg2: #111;
+            --bg3: #1a1a1a;
+            --surface: #1e1e1e;
+            --border: #2a2a2a;
+            --accent: #c9a96e;
+            --accent2: #e8c9a3;
+            --text: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { background: var(--bg); color: var(--accent); font-family: var(--font-main); line-height: 1.6; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-        /* Navigation */
-        #nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 2rem 0; background: linear-gradient(to bottom, rgba(3,3,3,0.9), transparent); backdrop-filter: blur(10px); }
-        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 4rem; display: flex; justify-content: space-between; align-items: center; }
-        .brand { font-size: 1.25rem; font-weight: 700; text-decoration: none; color: var(--accent); letter-spacing: -0.02em; text-transform: lowercase; }
-        .brand span { color: var(--accent-muted); }
-        .nav-links { display: flex; gap: 3rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--accent-muted); font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent); }
-        .nav-links a.active { color: var(--accent); }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-        /* Sections */
-        section { padding: 10rem 4rem; max-width: 1400px; margin: 0 auto; }
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
-        h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 2rem; }
-        .hero p { font-size: 1.5rem; color: var(--accent-muted); max-width: 600px; margin-bottom: 3rem; }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
 
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-        .package-card { background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; border-radius: 4px; transition: var(--transition); }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        section { padding: 120px 5% 80px; max-width: 1200px; margin: 0 auto; }
+
+        .hero-service { text-align: center; padding-top: 150px; }
+        .hero-service h1 { font-size: clamp(2rem, 6vw, 3.5rem); color: var(--white); margin-bottom: 20px; }
+        .hero-service p { color: var(--text-dim); max-width: 800px; margin: 0 auto 40px; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--bg2);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .feature-info { padding: 40px; }
+        .feature-info h3 { color: var(--accent); margin-bottom: 15px; }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .package-card {
+            background: var(--bg3);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: var(--transition);
+        }
+
         .package-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .package-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .package-card p { color: var(--accent-muted); margin-bottom: 2rem; }
-        .package-card ul { list-style: none; margin-bottom: 3rem; }
-        .package-card li { margin-bottom: 0.75rem; color: var(--accent-muted); font-size: 0.95rem; display: flex; align-items: center; }
-        .package-card li::before { content: "•"; color: var(--accent); margin-right: 0.75rem; }
+        .package-card h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 20px; }
+        .package-card ul { list-style: none; margin-bottom: 40px; color: var(--text-dim); text-align: left; }
+        .package-card li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .package-card li::before { content: '✓'; color: var(--accent); font-weight: bold; }
 
-        .cta-button { display: inline-block; padding: 1.25rem 2.5rem; background: var(--accent); color: var(--bg); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
-        .cta-button:hover { opacity: 0.9; transform: scale(1.02); }
-
-        /* Footer */
-        footer { padding: 6rem 4rem; border-top: 1px solid var(--border); background: #050505; }
-        .footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
-        .footer-brand h2 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .footer-brand p { color: var(--accent-muted); max-width: 300px; }
-        .footer-links h4 { margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--accent-muted); }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 0.75rem; }
-        .footer-links a { color: var(--accent-muted); text-decoration: none; transition: var(--transition); }
-        .footer-links a:hover { color: var(--accent); }
-
-        @media (max-width: 1024px) {
-            .grid { grid-template-columns: 1fr; }
-            .nav-inner, section, footer { padding: 2rem; }
-            .footer-inner { grid-template-columns: 1fr; }
+        .btn {
+            padding: 18px 45px;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: var(--transition);
+            display: inline-block;
         }
+
+        .btn:hover { background: var(--accent2); }
+
+        footer { padding: 80px 5% 40px; background: var(--bg); border-top: 1px solid var(--border); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: var(--text-dim); text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="brand">entre nós<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="consultoria.html">Consultoria</a></li>
-                <li><a href="remoto.html">Remoto</a></li>
-                <li><a href="presencial.html" class="active">Presencial</a></li>
-            </ul>
+    <nav>
+        <a href="index.html" class="logo">ENTRE<span>NÓS</span></a>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="consultoria.html">Consultoria IA</a>
+            <a href="remoto.html">Edição Remota</a>
+            <a href="presencial.html" class="active">Captação Presencial</a>
         </div>
     </nav>
 
-    <main>
-        <section class="hero">
-            <h1>Captação Presencial Premium para Imóveis Exclusivos</h1>
-            <p>Olhar técnico e equipamentos de ponta para destacar a arquitetura e a luz natural de Ubatuba. Ideal para imóveis de alto padrão e lançamentos.</p>
-            <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Gostaria%20de%20saber%20mais%20sobre%20a%20captação%20presencial." class="cta-button">Agendar Sessão</a>
-        </section>
+    <section class="hero-service">
+        <h1>Captação Presencial Premium</h1>
+        <p>Atendimento exclusivo em Ubatuba e região para imóveis de alto padrão. Unimos técnica arquitetônica, sensibilidade artística e o melhor da tecnologia.</p>
+        <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Gostaria%20de%20agendar%20uma%20captação%20presencial%20em%20Ubatuba." class="btn">Agendar Data</a>
+    </section>
 
-        <section id="pacotes">
-            <h2>Nossos Planos</h2>
-            <div class="grid">
-                <div class="package-card">
-                    <h3>Standard</h3>
-                    <p>Foco em fotografia técnica de alta qualidade.</p>
-                    <ul>
-                        <li>Fotos profissionais (arquitetura)</li>
-                        <li>Tratamento de luz e cor</li>
-                        <li>Entrega via Drive</li>
-                        <li>Ideal para locação e venda</li>
-                    </ul>
-                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20pacote%20Standard." class="cta-button">Consultar</a>
-                </div>
-
-                <div class="package-card">
-                    <h3>Premium</h3>
-                    <p>Apresentação completa e moderna.</p>
-                    <ul>
-                        <li>Fotos profissionais</li>
-                        <li>Tratamento avançado</li>
-                        <li>Vídeo Reels / TikTok dinâmico</li>
-                        <li>Foco em Conversão</li>
-                    </ul>
-                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20pacote%20Premium." class="cta-button">Consultar</a>
-                </div>
-
-                <div class="package-card">
-                    <h3>Escama Digital</h3>
-                    <p>A experiência definitiva.</p>
-                    <ul>
-                        <li>Tudo do Premium</li>
-                        <li>Virtual Staging Cinematic</li>
-                        <li>Tour em Vídeo imersivo</li>
-                        <li>Entrega priorizada</li>
-                    </ul>
-                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20pacote%20Escama%20Digital." class="cta-button">Consultar</a>
+    <section>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-info">
+                    <h3>Olhar Arquitetônico</h3>
+                    <p>Não apenas fotos, mas uma interpretação do espaço. Valorizamos linhas, materiais e a integração com a natureza local.</p>
                 </div>
             </div>
-        </section>
-    </main>
+            <div class="feature-card">
+                <div class="feature-info">
+                    <h3>Luz Natural & Golden Hour</h3>
+                    <p>Planejamos a captação de acordo com a posição do sol para garantir sombras suaves e cores vibrantes.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-info">
+                    <h3>Movimento Cinematic</h3>
+                    <p>Vídeos verticais de alta qualidade com transições fluidas, perfeitos para atrair desejo imediato no Instagram.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pacotes">
+        <h2 style="color: var(--white); text-align: center; font-size: 2.5rem; margin-bottom: 10px;">Opções de Atendimento</h2>
+        <p style="text-align: center; color: var(--text-dim); margin-bottom: 50px;">Escolha o nível de entrega que seu imóvel exclusivo exige.</p>
+        <div class="packages-grid">
+            <div class="package-card">
+                <h3>Standard</h3>
+                <ul>
+                    <li>15-20 Fotos HDR</li>
+                    <li>Edição de cores avançada</li>
+                    <li>Entrega em 72h</li>
+                    <li>Limpeza digital básica</li>
+                </ul>
+                <a href="https://wa.me/5511961726800" class="btn">Solicitar</a>
+            </div>
+            <div class="package-card" style="border-color: var(--accent);">
+                <h3>Premium</h3>
+                <ul>
+                    <li>30+ Fotos HDR</li>
+                    <li>1 Vídeo Cinematic (Reels)</li>
+                    <li>Drone (Fotos aéreas)</li>
+                    <li>Virtual Staging (2 fotos)</li>
+                </ul>
+                <a href="https://wa.me/5511961726800" class="btn">Solicitar</a>
+            </div>
+            <div class="package-card">
+                <h3>Escama Digital</h3>
+                <ul>
+                    <li>Captação Premium Completa</li>
+                    <li>Gestão de Tráfego Pago</li>
+                    <li>Landing Page do Imóvel</li>
+                    <li>Consultoria de Vendas</li>
+                </ul>
+                <a href="https://wa.me/5511961726800" class="btn">Falar com Consultor</a>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <h2>entre nós<span>.</span></h2>
-                <p>Sukha Campos da Entre Nós — O Futuro da Apresentação Imobiliária.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo">ENTRE<span>NÓS</span></a>
+                <p style="margin-top: 20px;">Ubatuba, SP — Atendimento premium para imóveis exclusivos.</p>
             </div>
-            <div class="footer-links">
+            <div class="footer-col">
                 <h4>Navegação</h4>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="consultoria.html">Consultoria</a></li>
-                    <li><a href="remoto.html">Remoto</a></li>
-                    <li><a href="presencial.html">Presencial</a></li>
-                </ul>
+                <a href="index.html">Início</a>
+                <a href="consultoria.html">Consultoria IA</a>
+                <a href="remoto.html">Edição Remota</a>
+                <a href="presencial.html">Captação Presencial</a>
             </div>
-            <div class="footer-links">
+            <div class="footer-col">
                 <h4>Contato</h4>
-                <ul>
-                    <li><a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp</a></li>
-                    <li><a href="mailto:entrenos.solucoes@gmail.com">E-mail</a></li>
-                    <li><a href="https://instagram.com/sukhacampos">Instagram</a></li>
-                </ul>
+                <p>WhatsApp: (11) 96172-6800</p>
+                <p>Email: entrenos.solucoes@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Assinatura</h4>
+                <p style="color: var(--accent); font-weight: 700;">Sukha Campos da Entre Nós</p>
             </div>
         </div>
     </footer>
