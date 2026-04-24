@@ -1,38 +1,44 @@
 [
   {
+    "id": 0,
+    "antes": "Sem-homestaging-0.jpg",
+    "depois": "Com-homestaging-0.jpg",
+    "legenda": "Fachada Externa"
+  },
+  {
     "id": 1,
-    "antes": "Sem-homestaging-1.png",
-    "depois": "Com-homestaging-1.png",
-    "legenda": "Sala de Estar"
+    "antes": "Sem-homestaging-1.jpg",
+    "depois": "Com-homestaging-1.jpg",
+    "legenda": "Hall de Entrada"
   },
   {
     "id": 2,
-    "antes": "Sem-homestaging-1_2.png",
-    "depois": "Com-homestaging-1_2.png",
-    "legenda": "Cozinha Integrada"
+    "antes": "Sem-homestaging-2.jpg",
+    "depois": "Com-homestaging-2.jpg",
+    "legenda": "Sala de Estar"
   },
   {
     "id": 3,
-    "antes": "Sem-homestaging-3.png",
-    "depois": "Com-homestaging-3.png",
-    "legenda": "Quarto de Casal"
+    "antes": "Sem-homestaging-3.jpg",
+    "depois": "Com-homestaging-3.jpg",
+    "legenda": "Cozinha Integrada"
   },
   {
     "id": 4,
-    "antes": "Sem-homestaging-4.png",
-    "depois": "Com-homestaging-4.png",
-    "legenda": "Banheiro Suite"
+    "antes": "Sem-homestaging-4.jpg",
+    "depois": "Com-homestaging-4.jpg",
+    "legenda": "Quarto de Casal"
   },
   {
     "id": 5,
-    "antes": "Sem-homestaging-5.png",
-    "depois": "Com-homestaging-5.png",
-    "legenda": "Área Gourmet"
+    "antes": "Sem-homestaging-5.jpg",
+    "depois": "Com-homestaging-5.jpg",
+    "legenda": "Banheiro Suite"
   },
   {
     "id": 6,
-    "antes": "Sem-homestaging-6.png",
-    "depois": "Com-homestaging-6.png",
-    "legenda": "Fachada Externa"
+    "antes": "Sem-homestaging-6.jpg",
+    "depois": "Com-homestaging-6.jpg",
+    "legenda": "Area Gourmet"
   }
 ]
