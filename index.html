@@ -3,208 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entre Nós | Fotografia Imobiliária e Virtual Staging com IA</title>
+    <title>Entre Nós | Fotografia Imobiliária e Virtual Staging</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0a0a;
             --bg2: #111;
-            --bg3: #1a1a1a;
-            --surface: #1e1e1e;
-            --border: #2a2a2a;
+            --surface: #1a1a1a;
             --accent: #c9a96e;
-            --accent2: #e8c99a;
-            --text: #f0f0f0;
-            --muted: #888;
-            --radius: 16px;
+            --text: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --white: #ffffff;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-        /* Floating WhatsApp button */
-        .whatsapp-button {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav */
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            border-radius: 50%;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-            animation: float 2s ease-in-out infinite;
-            z-index: 10000;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 8rem 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            color: var(--white);
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .problem-text h2 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Solutions Cards */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(201, 169, 110, 0.05);
+            transition: 0.4s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            background: #222;
+        }
+
+        .card h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
             text-decoration: none;
-        }
-        .whatsapp-button svg {
-            width: 35px;
-            height: 35px;
-            fill: white;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            transition: all 0.3s ease;
         }
 
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(10, 10, 10, .85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
-        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -1px; }
-        .brand span { color: var(--accent); }
-        .nav-links { list-style: none; display: flex; gap: 32px; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-weight: 500; transition: color .2s; }
-        .nav-links a:hover { color: var(--text); }
-        .nav-cta { background: var(--accent); color: #0a0a0a; padding: 10px 22px; border-radius: 100px; font-size: .875rem; font-weight: 700; text-decoration: none; transition: all .2s; }
-        .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
-
-        .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 120px 32px 80px; }
-        .hero-inner { display: flex; flex-direction: column; gap: 28px; }
-        .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201, 169, 110, .12); border: 1px solid rgba(201, 169, 110, .25); color: var(--accent); padding: 8px 16px; border-radius: 100px; font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; width: fit-content; }
-        .hero h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -2px; }
-        .gradient-text { background: linear-gradient(135deg, var(--accent), #f0c87a, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 520px; line-height: 1.7; }
-        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-        .btn-primary { background: var(--accent); color: #0a0a0a; padding: 14px 28px; border-radius: 100px; font-size: .9rem; font-weight: 700; text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; }
-        .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 110, .3); }
-        .btn-ghost { background: transparent; color: var(--text); padding: 14px 28px; border-radius: 100px; font-size: .9rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border); transition: all .2s; display: inline-flex; align-items: center; }
-        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-        .hero-stats { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding-top: 8px; }
-        .stat { display: flex; flex-direction: column; }
-        .stat strong { font-size: 1.5rem; font-weight: 800; color: var(--accent); letter-spacing: -1px; }
-        .stat span { font-size: .75rem; color: var(--muted); font-weight: 500; letter-spacing: .04em; }
-        .stat-divider { width: 1px; height: 32px; background: var(--border); }
-
-        .hero-visual { position: relative; height: 500px; width: 100%; }
-        .visual-card { position: absolute; border-radius: 20px; overflow: hidden; }
-        .card-back { width: 70%; height: 70%; top: 0; right: 0; border: 1px solid var(--border); }
-        .card-front { width: 72%; height: 72%; bottom: 0; left: 0; border: 1px solid rgba(201, 169, 110, .3); box-shadow: 0 24px 60px rgba(0,0,0,.6); }
-        .visual-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .card-tag { position: absolute; bottom: 16px; left: 16px; background: rgba(201, 169, 110, .15); border: 1px solid rgba(201, 169, 110, .3); color: var(--accent); padding: 6px 14px; border-radius: 100px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(8px); }
-
-        section { padding: 100px 32px; max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: .75rem; font-weight: 700; color: var(--accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 16px; }
-        h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 32px; }
-
-        .servicos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .servico-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; transition: all .2s; text-decoration: none; color: inherit; }
-        .servico-card:hover { border-color: rgba(201, 169, 110, .3); transform: translateY(-2px); }
-        .sc-num { font-size: 3rem; font-weight: 900; color: rgba(201, 169, 110, .15); letter-spacing: -3px; margin-bottom: 12px; line-height: 1; }
-        .servico-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-        .servico-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
-
-        footer { background: var(--bg); border-top: 1px solid var(--border); padding: 60px 32px 32px; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
-        .footer-brand .brand { font-size: 1.3rem; display: inline-block; margin-bottom: 12px; }
-        .footer-brand p { font-size: .85rem; color: var(--muted); line-height: 1.7; max-width: 280px; }
-        .footer-nav h5 { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-        .footer-nav a { display: block; font-size: .85rem; color: var(--muted); text-decoration: none; margin-bottom: 8px; transition: color .2s; }
-        .footer-nav a:hover { color: var(--text); }
-
-        @media (max-width: 992px) {
-            .hero { grid-template-columns: 1fr; padding-top: 140px; text-align: center; }
-            .hero-inner { align-items: center; }
-            .hero-visual { max-width: 600px; margin: 0 auto; }
-            .footer-inner { grid-template-columns: 1fr 1fr; }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
         }
+
+        footer {
+            padding: 6rem 5% 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 110, 0.1);
+        }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .servicos-grid { grid-template-columns: 1fr; }
-            .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+            .problem-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="brand">entre nós<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="consultoria.html">Consultoria IA</a></li>
-                <li><a href="remoto.html">Edição Remota</a></li>
-                <li><a href="presencial.html">Captação Presencial</a></li>
-            </ul>
-            <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" target="_blank" rel="noopener noreferrer" class="nav-cta">Fale com a Sukha</a>
+
+    <nav>
+        <a href="index.html" class="logo">ENTRE NÓS</a>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="consultoria.html">Consultoria IA</a>
+            <a href="remoto.html">Edição Remota</a>
+            <a href="presencial.html">Captação Presencial</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-inner">
-            <div class="badge">Fotografia Imobiliária • Virtual Staging com IA • 48h</div>
-            <h1>Seus imóveis <br><span class="gradient-text">merecem ser</span><br>desejados.</h1>
-            <p class="hero-sub">Transformamos a apresentação visual da sua carteira com fotografia profissional e inteligência artificial — para que cada imóvel gere mais cliques, visitas e propostas reais.</p>
-            <div class="hero-actions">
-                <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" target="_blank" rel="noopener noreferrer" class="btn-primary">Agendar reunião gratuita →</a>
-                <a href="#servicos" class="btn-ghost">Ver serviços</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat"><strong>3x</strong><span>mais cliques</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><strong>73%</strong><span>mais rápido</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><strong>48h</strong><span>entrega</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><strong>10+</strong><span>anos exp.</span></div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="visual-card card-back">
-                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=700" alt="Imóvel original">
-            </div>
-            <div class="visual-card card-front">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=700" alt="Imóvel com Staging">
-                <div class="card-tag">Virtual Staging IA</div>
-            </div>
-        </div>
+        <h1>Seus imóveis merecem ser desejados.</h1>
+        <p>Transformamos a apresentação de imóveis através de fotografia estratégica, virtual staging e tecnologia de ponta para acelerar suas vendas.</p>
+        <a href="#solucoes" class="btn">Conhecer Soluções</a>
     </header>
 
-    <section id="servicos">
-        <div class="section-label">Nossas Soluções</div>
-        <h2>Tudo que sua carteira<br>precisa para vender mais.</h2>
-        <div class="servicos-grid">
-            <a href="consultoria.html" class="servico-card">
-                <div class="sc-num">01</div>
-                <h3>Consultoria de Captação e IA</h3>
-                <p>Treinamos sua equipe para captar como profissionais usando apenas o celular e ferramentas de IA.</p>
-            </a>
-            <a href="remoto.html" class="servico-card">
-                <div class="sc-num">02</div>
-                <h3>Edição & Virtual Staging</h3>
-                <p>Transformação total de fotos brutas. Mobiliamos e decoramos digitalmente com realismo impressionante.</p>
-            </a>
-            <a href="presencial.html" class="servico-card">
-                <div class="sc-num">03</div>
-                <h3>Captação Presencial Premium</h3>
-                <p>Atendimento exclusivo em Ubatuba e região. Equipamento de ponta para imóveis de alto padrão.</p>
-            </a>
+    <section class="section">
+        <div class="container problem-grid">
+            <div class="problem-text">
+                <h2>O Mercado Mudou</h2>
+                <p>90% das buscas por imóveis começam na internet. Se a sua primeira impressão não for impactante, você já perdeu o cliente. Fotos amadoras e ambientes vazios transmitem descaso e desvalorizam o patrimônio.</p>
+                <p style="margin-top: 1rem;">Nós resolvemos a dor da baixa conversão entregando imagens que vendem o estilo de vida, não apenas metros quadrados.</p>
+            </div>
+            <div style="background: var(--surface); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--accent);">
+                <span style="color: var(--accent);">[Imagem Comparativa: Antes vs Depois]</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucoes" class="section" style="background: var(--bg2);">
+        <div class="container">
+            <h2 class="section-title">Como Podemos Ajudar</h2>
+            <div class="solutions-grid">
+                <a href="consultoria.html" class="card">
+                    <h3>Consultoria de Captação & IA</h3>
+                    <p>Treinamos sua equipe para extrair o máximo do celular e usar IA no dia a dia, otimizando o workflow interno.</p>
+                    <span style="display: block; margin-top: 1.5rem; color: var(--accent); font-weight: 600;">Saiba Mais →</span>
+                </a>
+                <a href="remoto.html" class="card">
+                    <h3>Edição & Virtual Staging Remoto</h3>
+                    <p>Envie suas fotos e receba o material editado profissionalmente com mobília virtual em até 48 horas.</p>
+                    <span style="display: block; margin-top: 1.5rem; color: var(--accent); font-weight: 600;">Saiba Mais →</span>
+                </a>
+                <a href="presencial.html" class="card">
+                    <h3>Captação Presencial Premium</h3>
+                    <p>Produção completa de fotos e vídeos cinematográficos para imóveis exclusivos e de alto padrão.</p>
+                    <span style="display: block; margin-top: 1.5rem; color: var(--accent); font-weight: 600;">Saiba Mais →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Quem Somos</h2>
+            <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; color: var(--text-dim);">
+                Com 10 anos de experiência em imagem, 8 anos dedicados ao mercado imobiliário e 3 anos vivenciando o dia a dia dentro de uma imobiliária, <strong>Sukha Campos</strong> fundou a Entre Nós para elevar o padrão da apresentação imobiliária brasileira.
+            </p>
+            <p style="color: var(--accent); font-weight: 600;">Sukha Campos da Entre Nós</p>
         </div>
     </section>
 
     <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <span class="brand">entre nós<span>.</span></span>
-                <p>Fotografia imobiliária profissional e Virtual Home Staging com IA. Seus imóveis prontos em 48h.</p>
-            </div>
-            <div class="footer-nav">
-                <h5>Navegação</h5>
-                <a href="index.html">Início</a>
-                <a href="consultoria.html">Consultoria IA</a>
-                <a href="remoto.html">Edição Remota</a>
-                <a href="presencial.html">Captação Presencial</a>
-            </div>
-            <div class="footer-nav">
-                <h5>Contato</h5>
-                <a href="https://wa.me/5511961726800">WhatsApp: (11) 96172-6800</a>
-                <a href="https://instagram.com/sukhacampos">@sukhacampos</a>
-                <a href="mailto:entrenos.solucoes@gmail.com">entrenos.solucoes@gmail.com</a>
-            </div>
-        </div>
+        <p>&copy; 2024 Entre Nós. Atendimento em todo o Brasil. Base em Ubatuba, SP.</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">contato@entrenos.com.br | (11) 96172-6800</p>
     </footer>
 
-    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.589 15.217c.118-.273.219-.551.219-.848 0-2.12-2.79-6.01-6.25-6.01-1.11 0-2.12.153-3.097.472-.305.109-.658.217-1.058.462-.798.452-1.574.724-2.51.724-1.124 0-1.99-.553-2.562-.093-.623.629-.163 1.739.745 2.334.629.884 1.5 1.224 2.384 1.576.838.319 1.76.81 2.348.493.785-.368 1.295-1.267 1.87-1.59 2.539-1.401 7.042-1.866 7.042-5.185 0-1.062-.78-1.836-1.684-1.836-2.068 0-3.66 1.416-4.542 2.06-.357.222-.657.325-.977.412.257-.367.776-1.026.89-1.198.603-1.063 1.257-1.273 2.343-1.273.777 0 1.554.468 1.554 1.515 0 3.005-4.844 3.847-5.988 3.847-.865 0-1.637-.187-1.96-.519-.221-.221-.1-.407-.025-.586.366-.702 1.053-1.072 1.947-1.072.337 0 .571-.154.571-.515 0-.353-.238-.487-.52-.487-.516 0-1.722.12-2.69 1.430-.385.557-.868.801-1.649.801-.569 0-1.262-.293-2.368-1.057-.777-.575-.778-1.215-.778-1.46 0-1.389 1.437-2.814 3.186-3.429 1.176-.372 2.465-.575 3.66-.575 4.748 0 8.75 2.99 8.75 7.25 0 1.118-.368 2.027-.901 2.746z"/></svg>
+    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 32 32" style="width: 32px; height: 32px; fill: white;">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.483 2.017 7.791l-2.017 7.209 7.391-1.938c2.197 1.154 4.704 1.812 7.375 1.812 8.837 0 16-7.163 16-16s-7.163-16-16-16zm9.25 21.625c-0.38 1.066-1.9 1.956-2.612 2.069-0.712 0.113-1.637 0.206-4.737-1.069-3.95-1.625-6.5-5.637-6.7-5.9-0.2-0.263-1.612-2.144-1.612-4.088 0-1.944 1.012-2.9 1.375-3.287 0.363-0.387 0.787-0.487 1.05-0.487s0.525 0.013 0.75 0.025c0.237 0.012 0.55-0.088 0.863 0.663 0.325 0.75 1.113 2.713 1.213 2.913s0.162 0.425 0.012 0.725c-0.15 0.3-0.225 0.487-0.45 0.75s-0.475 0.588-0.675 0.8c-0.225 0.237-0.463 0.5-0.2 0.95 0.263 0.45 1.163 1.913 2.5 3.1 1.713 1.525 3.163 2 3.613 2.213 0.45 0.213 0.713 0.175 0.975-0.125 0.263-0.3 1.125-1.313 1.425-1.763 0.3-0.45 0.6-0.375 1-0.225s2.513 1.188 2.938 1.4 0.713 0.325 0.813 0.5c0.1 0.175 0.1 1-0.28 2.063z"/>
+        </svg>
     </a>
+
 </body>
 </html>
