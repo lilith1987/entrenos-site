@@ -5,7 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entre Nós | Fotografia Imobiliária e Virtual Staging com IA</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg: #030303;
+            --card-bg: #0a0a0a;
+            --accent: #ffffff;
+            --accent-muted: #888888;
+            --border: #1a1a1a;
+            --font-main: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--accent);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        #nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 2rem 0;
+            background: linear-gradient(to bottom, rgba(3,3,3,0.9), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            text-transform: lowercase;
+        }
+
+        .brand span { color: var(--accent-muted); }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--accent-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: reveal 1s forwards 0.2s;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--accent-muted);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: reveal 1s forwards 0.4s;
+        }
+
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 10rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 6rem;
+            max-width: 600px;
+        }
+
+        .section-header span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-muted);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 4rem 3rem;
+            border-radius: 2px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 450px;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-muted);
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .service-card p {
+            color: var(--accent-muted);
+            margin-bottom: 2rem;
+        }
+
+        .service-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 4rem;
+            border-top: 1px solid var(--border);
+            margin-top: 10rem;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--accent-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: var(--accent-muted); }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .nav-inner, section, footer { padding: 0 2rem; }
+            .hero h1 { font-size: 4rem; }
+        }
+    </style>
 </head>
 <body>
     <nav id="nav">
@@ -17,162 +257,83 @@
                 <li><a href="remoto.html">Edição Remota</a></li>
                 <li><a href="presencial.html">Captação Presencial</a></li>
             </ul>
-            <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" target="_blank" class="nav-cta">Fale com a Sukha</a>
         </div>
     </nav>
 
-    <section id="hero" class="hero">
-        <div class="hero-inner">
-            <div class="badge">Fotografia Imobiliária • Virtual Staging com IA • 48h</div>
-            <h1>Seus imóveis <br><span class="gradient-text">merecem ser</span><br>desejados.</h1>
-            <p class="hero-sub">Transformamos a apresentação visual da sua carteira com fotografia profissional e inteligência artificial — para que cada imóvel gere mais cliques, visitas e propostas reais.</p>
-            <div class="hero-actions">
-                <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" target="_blank" class="btn-primary">Agendar reunião gratuita &rarr;</a>
-                <a href="#solucoes" class="btn-ghost">Ver soluções</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat"><strong>3x</strong><span>mais cliques</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><strong>73%</strong><span>mais rápidos</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><strong>48h</strong><span>de entrega</span></div>
-                <div class="stat-divider"></div>
-                <div class="stat"><strong>10</strong><span>anos de exp.</span></div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="visual-card card-back">
-                <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Imóvel original">
-            </div>
-            <div class="visual-card card-front">
-                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Imóvel com Virtual Staging">
-                <div class="card-tag">Virtual Staging IA</div>
-            </div>
-        </div>
-    </section>
-
-    <div class="marquee-strip">
-        <div class="marquee-track">
-            <span>Fotografia Imobiliária Premium</span><span class="dot">•</span>
-            <span>Virtual Home Staging com IA</span><span class="dot">•</span>
-            <span>Entrega em 48 horas</span><span class="dot">•</span>
-            <span>Soluções Remotas para todo o Brasil</span><span class="dot">•</span>
-            <span>Captação Presencial em Ubatuba</span><span class="dot">•</span>
-        </div>
-    </div>
-
-    <section id="problema" class="section-inner">
-        <div class="section-label">O problema</div>
-        <h2>Fotos ruins custam <br>mais do que você imagina.</h2>
-        <div class="problema-grid">
-            <div class="prob-item">
-                <div class="prob-icon">01</div>
-                <h4>Menos cliques</h4>
-                <p>Imóveis mal fotografados são ignorados nos portais antes mesmo de serem vistos. A concorrência está a um scroll de distância.</p>
-            </div>
-            <div class="prob-item">
-                <div class="prob-icon">02</div>
-                <h4>Mais tempo no mercado</h4>
-                <p>Cada dia a mais no portal pressiona comissões e desgasta a imagem da imobiliária perante proprietários.</p>
-            </div>
-            <div class="prob-item">
-                <div class="prob-icon">03</div>
-                <h4>Valor percebido menor</h4>
-                <p>Fotos amadoras transmitem descuido. O comprador decide se quer visitar com base no impacto visual digital.</p>
-            </div>
-        </div>
-        <blockquote>"O imóvel mal fotografado não é um problema de marketing. É uma oportunidade de negócio que nunca chega à mesa."</blockquote>
-    </section>
-
-    <section id="solucoes" class="section-inner">
-        <div class="section-label">Nossas Soluções</div>
-        <h2>Tudo que sua carteira <br>precisa para performar.</h2>
-        <div class="pacotes-grid">
-            <div class="pacote">
-                <div class="pacote-top">
-                    <h3>Consultoria de Captação & IA</h3>
-                    <p>Capacite sua equipe para extrair o máximo do celular e otimizar processos com IA.</p>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Seus imóveis merecem ser desejados.</h1>
+                <p>Fotografia imobiliária de alto impacto e staging virtual com inteligência artificial para acelerar suas vendas.</p>
+                <div class="hero-cta">
+                    <a href="#solucoes" class="btn">Conheça nossas soluções</a>
                 </div>
-                <ul>
-                    <li>Workshop prático de fotografia</li>
-                    <li>Configurações ideais de celular</li>
-                    <li>Domínio de luz natural</li>
-                    <li>Suporte 15 dias pós-aula</li>
-                </ul>
-                <a href="consultoria.html" class="pacote-btn">Saber mais</a>
             </div>
-            <div class="pacote pacote-destaque">
-                <div class="pacote-badge">Mais Escalonável</div>
-                <div class="pacote-top">
-                    <h3>Edição & Staging Remoto</h3>
-                    <p>Transformação visual profissional para imobiliárias de todo o Brasil com entrega em 48h.</p>
-                </div>
-                <ul>
-                    <li>Edição Profissional PRO</li>
-                    <li>Virtual Home Staging IA</li>
-                    <li>SLA Garantido de 48h</li>
-                    <li>Pacotes Mensais B2B</li>
-                </ul>
-                <a href="remoto.html" class="pacote-btn pacote-btn-destaque">Saber mais</a>
-            </div>
-            <div class="pacote">
-                <div class="pacote-top">
-                    <h3>Captação Presencial</h3>
-                    <p>Serviço premium in loco para imóveis de alto padrão em Ubatuba e região.</p>
-                </div>
-                <ul>
-                    <li>Equipamento Profissional</li>
-                    <li>Olhar técnico especializado</li>
-                    <li>Vídeos Cinematográficos</li>
-                    <li>Foco em arquitetura e detalhes</li>
-                </ul>
-                <a href="presencial.html" class="pacote-btn">Saber mais</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="sobre" class="section-inner sobre-inner">
-        <div class="sobre-text">
-            <div class="section-label">Quem somos</div>
-            <h2>Visão de dentro <br>da imobiliária.</h2>
-            <p>Sou a <strong>Sukha Campos</strong>, fotógrafa com <strong>mais de 10 anos de experiência</strong> e 8 anos dedicados ao mercado imobiliário.</p>
-            <p>Por 3 anos atuei dentro de uma imobiliária, do atendimento à gestão de redes. Essa imersão me deu o entendimento profundo das dores reais do corretor. A <strong>Entre Nós</strong> não entrega apenas fotos bonitas — entregamos imagens que performam e vendem.</p>
-            <div class="sobre-nums">
-                <div class="snum"><strong>10+</strong><span>anos fotografia</span></div>
-                <div class="snum"><strong>8 anos</strong><span>mercado imob.</span></div>
-                <div class="snum"><strong>3 anos</strong><span>dentro de imob.</span></div>
+        <section id="problema">
+            <div class="section-header">
+                <span>O Mercado</span>
+                <h2>Por que a apresentação importa?</h2>
             </div>
-        </div>
-        <div class="g-item">
-            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Sukha Campos">
-        </div>
-    </section>
+            <div class="problem-content">
+                <p>Imóveis com fotos profissionais recebem até 61% mais cliques e vendem até 32% mais rápido. No mercado atual, a primeira impressão é o único segundo que você tem para capturar a atenção de um comprador potencial.</p>
+            </div>
+        </section>
 
-    <footer id="footer">
+        <section id="solucoes">
+            <div class="section-header">
+                <span>Nossas Soluções</span>
+                <h2>Serviços focados em conversão.</h2>
+            </div>
+            <div class="services-grid">
+                <a href="consultoria.html" class="service-card">
+                    <div>
+                        <h3>Consultoria de Captação e IA</h3>
+                        <p>Treinamento completo para corretores e imobiliárias dominarem a captação com celular e ferramentas de IA.</p>
+                    </div>
+                    <span class="service-link">Saiba mais →</span>
+                </a>
+                <a href="remoto.html" class="service-card">
+                    <div>
+                        <h3>Edição & Staging Remoto</h3>
+                        <p>Transformação visual em 48h. Você capta, nós editamos e aplicamos Virtual Staging com IA.</p>
+                    </div>
+                    <span class="service-link">Saiba mais →</span>
+                </a>
+                <a href="presencial.html" class="service-card">
+                    <div>
+                        <h3>Captação Presencial</h3>
+                        <p>Atendimento premium em Ubatuba e região. Equipamento profissional e olhar técnico para imóveis exclusivos.</p>
+                    </div>
+                    <span class="service-link">Saiba mais →</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
         <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="index.html" class="brand">entre nós<span>.</span></a>
-                    <p>Fotografia imobiliária profissional e Virtual Home Staging com IA. Resultados em até 48h.</p>
-                </div>
-                <div class="footer-nav">
-                    <h5>Navegação</h5>
-                    <a href="index.html">Início</a>
-                    <a href="consultoria.html">Consultoria IA</a>
-                    <a href="remoto.html">Edição Remota</a>
-                    <a href="presencial.html">Captação Presencial</a>
-                </div>
-                <div class="footer-nav">
-                    <h5>Contato</h5>
-                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp: (11) 96172-6800</a>
-                    <a href="mailto:entrenos.solucoes@gmail.com">entrenos.solucoes@gmail.com</a>
-                    <a href="https://instagram.com/sukhacampos">Instagram: @sukhacampos</a>
-                    <p style="color: #666; font-size: .85rem; margin-top: 12px;">Ubatuba, SP — Atendimento nacional.</p>
-                </div>
+            <div class="footer-brand">
+                <h2>entre nós<span>.</span></h2>
+                <p>Sukha Campos da Entre Nós — O Futuro da Apresentação Imobiliária.</p>
             </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Entre Nós. Todos os direitos reservados.</span>
-                <span>Fotografia Imobiliária • Virtual Staging • Ubatuba</span>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="consultoria.html">Consultoria</a></li>
+                    <li><a href="remoto.html">Remoto</a></li>
+                    <li><a href="presencial.html">Presencial</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp</a></li>
+                    <li><a href="mailto:entrenos.solucoes@gmail.com">E-mail</a></li>
+                    <li><a href="https://instagram.com/sukhacampos">Instagram</a></li>
+                </ul>
             </div>
         </div>
     </footer>
