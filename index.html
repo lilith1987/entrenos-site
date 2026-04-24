@@ -7,334 +7,369 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030303;
-            --card-bg: #0a0a0a;
-            --accent: #ffffff;
-            --accent-muted: #888888;
-            --border: #1a1a1a;
-            --font-main: 'Inter', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg: #0a0a0a;
+            --bg2: #111;
+            --bg3: #1a1a1a;
+            --surface: #1e1e1e;
+            --border: #2a2a2a;
+            --accent: #c9a96e;
+            --accent2: #e8c9a3;
+            --text: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: var(--bg);
-            color: var(--accent);
-            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        #nav {
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-            padding: 2rem 0;
-            background: linear-gradient(to bottom, rgba(3,3,3,0.9), transparent);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 4rem;
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
         }
 
-        .brand {
-            font-size: 1.25rem;
-            font-weight: 700;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
             text-decoration: none;
-            color: var(--accent);
-            letter-spacing: -0.02em;
-            text-transform: lowercase;
+            letter-spacing: -1px;
         }
 
-        .brand span { color: var(--accent-muted); }
+        .logo span {
+            color: var(--accent);
+        }
 
         .nav-links {
             display: flex;
-            gap: 3rem;
-            list-style: none;
+            gap: 30px;
         }
 
         .nav-links a {
+            color: var(--text-dim);
             text-decoration: none;
-            color: var(--accent-muted);
             font-size: 0.9rem;
             font-weight: 500;
             transition: var(--transition);
         }
 
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
 
-        /* Hero Section */
+        section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .hero {
             height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            z-index: 1;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -0.04em;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: reveal 1s forwards 0.2s;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            color: var(--accent-muted);
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: reveal 1s forwards 0.4s;
-        }
-
-        @keyframes reveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Sections Styling */
-        section {
-            padding: 10rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            margin-bottom: 6rem;
+            font-size: 1.2rem;
+            color: var(--text-dim);
             max-width: 600px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .section-header span {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-muted);
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 3.5rem;
+        .btn {
+            padding: 15px 35px;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
             font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
+            border-radius: 5px;
+            transition: var(--transition);
+            display: inline-block;
         }
 
-        /* Services Grid */
-        .services-grid {
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(201, 169, 110, 0.2);
+            background: var(--accent2);
+        }
+
+        .problem-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .service-card {
-            background: var(--card-bg);
+        .problem-card {
+            background: var(--bg2);
+            padding: 40px;
+            border-radius: 15px;
             border: 1px solid var(--border);
-            padding: 4rem 3rem;
-            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .problem-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .solution-card {
+            background: var(--bg3);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
             transition: var(--transition);
             text-decoration: none;
             color: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 450px;
         }
 
-        .service-card:hover {
-            border-color: var(--accent-muted);
-            transform: translateY(-10px);
+        .solution-card:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
         }
 
-        .service-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+        .solution-info {
+            padding: 30px;
         }
 
-        .service-card p {
-            color: var(--accent-muted);
-            margin-bottom: 2rem;
+        .solution-info h3 {
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
         }
 
-        .service-link {
-            font-size: 0.9rem;
+        .solution-info p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-link {
+            color: var(--accent);
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 10px;
         }
 
-        /* Footer */
+        .about {
+            background: var(--bg2);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
         footer {
-            padding: 6rem 4rem;
+            padding: 80px 5% 40px;
+            background: var(--bg);
             border-top: 1px solid var(--border);
-            margin-top: 10rem;
+            text-align: center;
         }
 
-        .footer-inner {
-            max-width: 1400px;
+        .footer-content {
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 60px;
         }
 
-        .footer-brand h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
         }
 
-        .footer-links h4 {
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            color: var(--accent-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
+        .footer-col p, .footer-col a {
+            color: var(--text-dim);
             text-decoration: none;
-            color: var(--accent);
-            transition: var(--transition);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
         }
 
-        .footer-links a:hover { color: var(--accent-muted); }
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
 
-        /* Mobile */
-        @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: 1fr; }
-            .nav-inner, section, footer { padding: 0 2rem; }
-            .hero h1 { font-size: 4rem; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="brand">entre nós<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="consultoria.html">Consultoria IA</a></li>
-                <li><a href="remoto.html">Edição Remota</a></li>
-                <li><a href="presencial.html">Captação Presencial</a></li>
-            </ul>
+    <nav>
+        <a href="index.html" class="logo">ENTRE<span>NÓS</span></a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Início</a>
+            <a href="consultoria.html">Consultoria IA</a>
+            <a href="remoto.html">Edição Remota</a>
+            <a href="presencial.html">Captação Presencial</a>
         </div>
     </nav>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Seus imóveis merecem ser desejados.</h1>
-                <p>Fotografia imobiliária de alto impacto e staging virtual com inteligência artificial para acelerar suas vendas.</p>
-                <div class="hero-cta">
-                    <a href="#solucoes" class="btn">Conheça nossas soluções</a>
+    <section class="hero">
+        <h1>Seus imóveis merecem ser desejados.</h1>
+        <p>Transformamos a percepção de valor dos seus anúncios através de fotografia estratégica e tecnologias de ponta.</p>
+        <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="btn">Solicitar Orçamento</a>
+    </section>
+
+    <section id="problema">
+        <h2 style="color: var(--white); font-size: 2.5rem; text-align: center;">Por que seus anúncios não convertem?</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>Imóveis Vazios</h3>
+                <p>Imóveis sem mobília parecem menores e frios. 90% dos compradores não conseguem visualizar o potencial de um espaço vazio.</p>
+            </div>
+            <div class="problem-card">
+                <h3>Fotos Sem Vida</h3>
+                <p>Capturas amadoras escondem os pontos fortes do imóvel. A primeira impressão é a única chance de atrair o lead.</p>
+            </div>
+            <div class="problem-card">
+                <h3>Lentidão no Processo</h3>
+                <p>O mercado imobiliário não espera. Cada dia sem fotos profissionais é uma oportunidade de venda perdida.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucoes">
+        <h2 style="color: var(--white); font-size: 2.5rem; text-align: center; margin-bottom: 10px;">Nossas Soluções</h2>
+        <p style="text-align: center; color: var(--text-dim); margin-bottom: 50px;">Tecnologia e sensibilidade artística para vender mais rápido.</p>
+        <div class="solutions-grid">
+            <a href="consultoria.html" class="solution-card">
+                <div class="solution-info">
+                    <h3>Consultoria de Captação e IA</h3>
+                    <p>Treinamos sua equipe para captar como profissionais usando apenas o celular e ferramentas de IA.</p>
+                    <span class="solution-link">Saber mais →</span>
                 </div>
-            </div>
-        </section>
+            </a>
+            <a href="remoto.html" class="solution-card">
+                <div class="solution-info">
+                    <h3>Edição & Virtual Staging</h3>
+                    <p>Transformação total de fotos brutas. Mobiliamos e decoramos digitalmente com realismo impressionante.</p>
+                    <span class="solution-link">Saber mais →</span>
+                </div>
+            </a>
+            <a href="presencial.html" class="solution-card">
+                <div class="solution-info">
+                    <h3>Captação Presencial Premium</h3>
+                    <p>Atendimento exclusivo em Ubatuba e região. Equipamento de ponta para imóveis de alto padrão.</p>
+                    <span class="solution-link">Saber mais →</span>
+                </div>
+            </a>
+        </div>
+    </section>
 
-        <section id="problema">
-            <div class="section-header">
-                <span>O Mercado</span>
-                <h2>Por que a apresentação importa?</h2>
+    <section class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>O Olhar Estratégico por trás da Lente</h2>
+                <p>Com mais de 10 anos de experiência em fotografia e 8 anos dedicados exclusivamente ao mercado imobiliário, entendo o que faz um comprador clicar em "contato".</p>
+                <p style="margin-top: 15px;">Vivi 3 anos dentro de uma imobiliária, conhecendo de perto as dores de corretores e gestores. Hoje, uno essa experiência à Inteligência Artificial para entregar resultados em tempo recorde.</p>
+                <p class="signature">Sukha Campos da Entre Nós</p>
             </div>
-            <div class="problem-content">
-                <p>Imóveis com fotos profissionais recebem até 61% mais cliques e vendem até 32% mais rápido. No mercado atual, a primeira impressão é o único segundo que você tem para capturar a atenção de um comprador potencial.</p>
-            </div>
-        </section>
-
-        <section id="solucoes">
-            <div class="section-header">
-                <span>Nossas Soluções</span>
-                <h2>Serviços focados em conversão.</h2>
-            </div>
-            <div class="services-grid">
-                <a href="consultoria.html" class="service-card">
-                    <div>
-                        <h3>Consultoria de Captação e IA</h3>
-                        <p>Treinamento completo para corretores e imobiliárias dominarem a captação com celular e ferramentas de IA.</p>
-                    </div>
-                    <span class="service-link">Saiba mais →</span>
-                </a>
-                <a href="remoto.html" class="service-card">
-                    <div>
-                        <h3>Edição & Staging Remoto</h3>
-                        <p>Transformação visual em 48h. Você capta, nós editamos e aplicamos Virtual Staging com IA.</p>
-                    </div>
-                    <span class="service-link">Saiba mais →</span>
-                </a>
-                <a href="presencial.html" class="service-card">
-                    <div>
-                        <h3>Captação Presencial</h3>
-                        <p>Atendimento premium em Ubatuba e região. Equipamento profissional e olhar técnico para imóveis exclusivos.</p>
-                    </div>
-                    <span class="service-link">Saiba mais →</span>
-                </a>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <h2>entre nós<span>.</span></h2>
-                <p>Sukha Campos da Entre Nós — O Futuro da Apresentação Imobiliária.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo">ENTRE<span>NÓS</span></a>
+                <p style="margin-top: 20px;">Soluções visuais para o mercado imobiliário moderno.</p>
             </div>
-            <div class="footer-links">
+            <div class="footer-col">
                 <h4>Navegação</h4>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="consultoria.html">Consultoria</a></li>
-                    <li><a href="remoto.html">Remoto</a></li>
-                    <li><a href="presencial.html">Presencial</a></li>
-                </ul>
+                <a href="index.html">Início</a>
+                <a href="consultoria.html">Consultoria IA</a>
+                <a href="remoto.html">Edição Remota</a>
+                <a href="presencial.html">Captação Presencial</a>Restore original golden palette and update content from PDF
             </div>
-            <div class="footer-links">
+            <div class="footer-col">
                 <h4>Contato</h4>
-                <ul>
-                    <li><a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp</a></li>
-                    <li><a href="mailto:entrenos.solucoes@gmail.com">E-mail</a></li>
-                    <li><a href="https://instagram.com/sukhacampos">Instagram</a></li>
-                </ul>
+                <p>WhatsApp: (11) 96172-6800</p>
+                <p>Email: entrenos.solucoes@gmail.com</p>
+                <p>Instagram: @sukhacampos</p>
             </div>
+            <div class="footer-col">
+                <h4>Localização</h4>
+                <p>Ubatuba, SP</p>
+                <p>Atendimento Nacional (Remoto)</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Entre Nós. Todos os direitos reservados. Design by Sukha Campos.</p>
         </div>
     </footer>
 </body>
