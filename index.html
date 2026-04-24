@@ -123,7 +123,7 @@
     .galeria-sub{font-size:.95rem;color:var(--muted);max-width:600px;margin-bottom:48px;}
     .galeria-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
     .g-item{border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative;}
-    .g-item img{width:100%;height:260px;object-fit:cover;display:block;}
+    .g-item img{width:100%;height:260px;object-fit:cover;display:block;}     .g-par{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:12px;}     .g-legenda{text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:28px;}     .g-label-antes{background:rgba(255,80,80,.15);color:#ff8080;}     .g-label-depois{background:rgba(100,200,120,.15);color:#7ed49a;}     .g-par{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:12px;}     .g-legenda{text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:28px;}     .g-label-antes{background:rgba(255,80,80,.15);color:#ff8080;}     .g-label-depois{background:rgba(100,200,120,.15);color:#7ed49a;}
     .g-label{position:absolute;bottom:12px;left:12px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(10,10,10,.75);backdrop-filter:blur(8px);padding:5px 12px;border-radius:100px;border:1px solid rgba(201,169,110,.3);}
     #faq{border-top:1px solid var(--border);}
     .faq-list{display:flex;flex-direction:column;gap:2px;max-width:760px;}
@@ -562,6 +562,34 @@ function handleForm(e){
   var msg=encodeURIComponent('Olá Sukha! Me chamo '+nome+'. Gostaria de agendar uma reunião gratuita sobre os serviços da Entre Nós.');
   window.open('https://wa.me/5511961726800?text='+msg,'_blank');
 }
+  
+// Carregar galeria automaticamente via fotos.json
+fetch('fotos.json')
+  .then(function(r){ return r.json(); })
+  .then(function(fotos){
+    var container = document.getElementById('galeria-dinamica');
+    if(!container) return;
+    container.innerHTML = '';
+    fotos.forEach(function(foto){
+      var div = document.createElement('div');
+      div.className = 'g-par';
+      div.innerHTML =
+        '<div class="g-item">'+
+          '<img src="'+foto.antes+'" alt="Antes - '+foto.legenda+'">'+
+          '<div class="g-label g-label-antes">Antes &middot; Original</div>'+
+        '</div>'+
+        '<div class="g-item">'+
+          '<img src="'+foto.depois+'" alt="Depois - '+foto.legenda+'">'+
+          '<div class="g-label g-label-depois">Depois &middot; Staging IA</div>'+
+        '</div>';
+      var legend = document.createElement('p');
+      legend.className = 'g-legenda';
+      legend.textContent = foto.legenda;
+      container.appendChild(div);
+      container.appendChild(legend);
+    });
+  })
+  .catch(function(err){ console.warn('Erro ao carregar fotos.json:', err); });
 </script>
 </body>
 </html>
