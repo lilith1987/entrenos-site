@@ -1,208 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Captação Presencial Premium | Entre Nós</title>
-  <meta name="description" content="Fotografia presencial premium em Ubatuba/SP. Olhar técnico, luz natural litorânea e movimento cinematográfico para imóveis exclusivos.">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captação Presencial Premium | Entre Nós</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030303;
+            --card-bg: #0a0a0a;
+            --accent: #ffffff;
+            --accent-muted: #888888;
+            --border: #1a1a1a;
+            --font-main: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--accent); font-family: var(--font-main); line-height: 1.6; overflow-x: hidden; }
+
+        /* Navigation */
+        #nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 2rem 0; background: linear-gradient(to bottom, rgba(3,3,3,0.9), transparent); backdrop-filter: blur(10px); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 4rem; display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.25rem; font-weight: 700; text-decoration: none; color: var(--accent); letter-spacing: -0.02em; text-transform: lowercase; }
+        .brand span { color: var(--accent-muted); }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--accent-muted); font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a.active { color: var(--accent); }
+
+        /* Sections */
+        section { padding: 10rem 4rem; max-width: 1400px; margin: 0 auto; }
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+        h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 2rem; }
+        .hero p { font-size: 1.5rem; color: var(--accent-muted); max-width: 600px; margin-bottom: 3rem; }
+
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+        .package-card { background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; border-radius: 4px; transition: var(--transition); }
+        .package-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .package-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .package-card p { color: var(--accent-muted); margin-bottom: 2rem; }
+        .package-card ul { list-style: none; margin-bottom: 3rem; }
+        .package-card li { margin-bottom: 0.75rem; color: var(--accent-muted); font-size: 0.95rem; display: flex; align-items: center; }
+        .package-card li::before { content: "•"; color: var(--accent); margin-right: 0.75rem; }
+
+        .cta-button { display: inline-block; padding: 1.25rem 2.5rem; background: var(--accent); color: var(--bg); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+        .cta-button:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* Footer */
+        footer { padding: 6rem 4rem; border-top: 1px solid var(--border); background: #050505; }
+        .footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+        .footer-brand h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .footer-brand p { color: var(--accent-muted); max-width: 300px; }
+        .footer-links h4 { margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--accent-muted); }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--accent-muted); text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); }
+
+        @media (max-width: 1024px) {
+            .grid { grid-template-columns: 1fr; }
+            .nav-inner, section, footer { padding: 2rem; }
+            .footer-inner { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navegação -->
-  <nav id="nav">
-    <div class="nav-container">
-      <a href="index.html" class="logo">Entre Nós</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="consultoria.html">Consultoria IA</a></li>
-        <li><a href="remoto.html">Edição Remota</a></li>
-        <li><a href="presencial.html" class="active">Captação Presencial</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section id="hero">
-    <div class="hero-content">
-      <h1>Captação Presencial Premium para Imóveis Exclusivos</h1>
-      <p>Fotografia de arquitetura com olhar técnico, luz natural litorânea de Ubatuba e movimento cinematográfico. Para imóveis que merecem ser apresentados como obras de arte.</p>
-      <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20Captação%20Presencial." class="cta">Agendar Sessão Fotográfica</a>
-    </div>
-  </section>
-
-  <!-- Diferenciais -->
-  <section id="diferenciais">
-    <div class="container">
-      <h2>O Olhar Técnico de Ubatuba</h2>
-      <p class="subtitle">10+ anos de experiência em fotografia, 8 anos no mercado imobiliário e 3 anos dentro de uma imobiliária. A luz natural do litoral paulista como diferencial competitivo.</p>
-      
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <h3>🏞️ Luz Natural Litorânea</h3>
-          <p>Ubatuba oferece uma qualidade de luz única. Luz difusa, céu azul intenso e reflexões naturais do mar que valorizam cada detalhe arquitetônico.</p>
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">entre nós<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="consultoria.html">Consultoria</a></li>
+                <li><a href="remoto.html">Remoto</a></li>
+                <li><a href="presencial.html" class="active">Presencial</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="benefit-item">
-          <h3>🏗️ Olhar Arquitetônico</h3>
-          <p>Composição estudada, perspectiva corrigida, valorização de linhas, materiais e espaços. Cada foto conta a história do projeto.</p>
+    <main>
+        <section class="hero">
+            <h1>Captação Presencial Premium para Imóveis Exclusivos</h1>
+            <p>Olhar técnico e equipamentos de ponta para destacar a arquitetura e a luz natural de Ubatuba. Ideal para imóveis de alto padrão e lançamentos.</p>
+            <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Gostaria%20de%20saber%20mais%20sobre%20a%20captação%20presencial." class="cta-button">Agendar Sessão</a>
+        </section>
+
+        <section id="pacotes">
+            <h2>Nossos Planos</h2>
+            <div class="grid">
+                <div class="package-card">
+                    <h3>Standard</h3>
+                    <p>Foco em fotografia técnica de alta qualidade.</p>
+                    <ul>
+                        <li>Fotos profissionais (arquitetura)</li>
+                        <li>Tratamento de luz e cor</li>
+                        <li>Entrega via Drive</li>
+                        <li>Ideal para locação e venda</li>
+                    </ul>
+                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20pacote%20Standard." class="cta-button">Consultar</a>
+                </div>
+
+                <div class="package-card">
+                    <h3>Premium</h3>
+                    <p>Apresentação completa e moderna.</p>
+                    <ul>
+                        <li>Fotos profissionais</li>
+                        <li>Tratamento avançado</li>
+                        <li>Vídeo Reels / TikTok dinâmico</li>
+                        <li>Foco em Conversão</li>
+                    </ul>
+                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20pacote%20Premium." class="cta-button">Consultar</a>
+                </div>
+
+                <div class="package-card">
+                    <h3>Escama Digital</h3>
+                    <p>A experiência definitiva.</p>
+                    <ul>
+                        <li>Tudo do Premium</li>
+                        <li>Virtual Staging Cinematic</li>
+                        <li>Tour em Vídeo imersivo</li>
+                        <li>Entrega priorizada</li>
+                    </ul>
+                    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20o%20pacote%20Escama%20Digital." class="cta-button">Consultar</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h2>entre nós<span>.</span></h2>
+                <p>Sukha Campos da Entre Nós — O Futuro da Apresentação Imobiliária.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="consultoria.html">Consultoria</a></li>
+                    <li><a href="remoto.html">Remoto</a></li>
+                    <li><a href="presencial.html">Presencial</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="https://wa.me/5511961726800?text=Olá%20Sukha!">WhatsApp</a></li>
+                    <li><a href="mailto:entrenos.solucoes@gmail.com">E-mail</a></li>
+                    <li><a href="https://instagram.com/sukhacampos">Instagram</a></li>
+                </ul>
+            </div>
         </div>
-
-        <div class="benefit-item">
-          <h3>🌊 Valorização de Vista para o Mar</h3>
-          <p>Imóveis litorâneos têm na vista seu principal ativo. Capturamos o mar, a vegetação e o horizonte como extensão do imóvel.</p>
-        </div>
-
-        <div class="benefit-item">
-          <h3>🎬 Movimento Cinematográfico</h3>
-          <p>Vídeos com movimento de câmera fluido, transições suaves e ritmo pensado para Reels, Stories e TikTok de alto impacto.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pacotes -->
-  <section id="pacotes">
-    <div class="container">
-      <h2>Pacotes de Captação Presencial</h2>
-      <p class="subtitle">Escolha o pacote ideal para o imóvel que você quer vender.</p>
-      
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Standard</h3>
-          <p class="plan-subtitle">Fotografia Profissional Completa</p>
-          <ul>
-            <li>Até 30 fotos tratadas</li>
-            <li>Luz natural + flash equilibrado</li>
-            <li>Correção de perspectiva</li>
-            <li>Tratamento de cor profissional</li>
-            <li>Entrega em 48h</li>
-          </ul>
-          <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20contratar%20o%20Pacote%20Standard." class="cta-secondary">Contratar Standard</a>
-        </div>
-
-        <div class="pricing-card highlight">
-          <span class="badge-top">Mais Escolhido</span>
-          <h3>Premium</h3>
-          <p class="plan-subtitle">Foto + Vídeo Dinâmico</p>
-          <ul>
-            <li>Tudo do Standard +</li>
-            <li>Vídeo para Reels/TikTok (30-60s)</li>
-            <li>Movimento de câmera cinematográfico</li>
-            <li>Edição com trilha e legendas</li>
-            <li>Destaque para vista e áreas externas</li>
-          </ul>
-          <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20contratar%20o%20Pacote%20Premium." class="cta">Contratar Premium</a>
-        </div>
-
-        <div class="pricing-card">
-          <h3>Escama Digital</h3>
-          <p class="plan-subtitle">Experiência Visual Máxima</p>
-          <ul>
-            <li>Tudo do Premium +</li>
-            <li>Virtual Staging Cinematic (foto + vídeo animado com IA)</li>
-            <li>Até 50 fotos tratadas</li>
-            <li>Vídeo longo (60-90s) para YouTube/site</li>
-            <li>Pacote completo de conteúdo para redes</li>
-          </ul>
-          <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20contratar%20o%20Pacote%20Escama%20Digital." class="cta-secondary">Contratar Escama Digital</a>
-        </div>
-      </div>
-
-      <p class="note">💡 Precisa de algo customizado? <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Preciso%20de%20um%20pacote%20customizado%20para%20captação.">Fale com a gente</a> e criamos um pacote sob medida.</p>
-    </div>
-  </section>
-
-  <!-- Processo -->
-  <section id="processo">
-    <div class="container">
-      <h2>Como Funciona</h2>
-      
-      <div class="workflow-grid">
-        <div class="workflow-step">
-          <div class="step-number">1</div>
-          <h3>Agendamento</h3>
-          <p>Conversamos sobre o imóvel, definimos o melhor horário de luz e alinhamos expectativas.</p>
-        </div>
-
-        <div class="workflow-step">
-          <div class="step-number">2</div>
-          <h3>Sessão Fotográfica</h3>
-          <p>Captação presencial em Ubatuba e região. Preparação do imóvel, composição e captura com equipamento profissional.</p>
-        </div>
-
-        <div class="workflow-step">
-          <div class="step-number">3</div>
-          <h3>Edição e Tratamento</h3>
-          <p>Pós-produção completa: correção de cor, perspectiva, luz e tratamento cinematográfico.</p>
-        </div>
-
-        <div class="workflow-step">
-          <div class="step-number">4</div>
-          <h3>Entrega</h3>
-          <p>Material finalizado em alta resolução via Google Drive em 48h. Pronto para publicar.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio / Cases -->
-  <section id="portfolio">
-    <div class="container">
-      <h2>Experiência Comprovada</h2>
-      
-      <div class="experience-grid">
-        <div class="experience-item">
-          <h3>📸 10+ Anos em Fotografia</h3>
-          <p>Mais de uma década dominando luz, composição e narrativa visual em diferentes contextos.</p>
-        </div>
-
-        <div class="experience-item">
-          <h3>🏠 8 Anos no Mercado Imobiliário</h3>
-          <p>Entendo o que vende. Conheço as dores do corretor e o que o comprador busca em uma foto.</p>
-        </div>
-
-        <div class="experience-item">
-          <h3>🏬 3 Anos Dentro de Imobiliária</h3>
-          <p>Vivência direta no dia a dia de uma imobiliária. Sei como o conteúdo visual impacta vendas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Final -->
-  <section id="cta-final">
-    <div class="container">
-      <h2>Seu Imóvel Merece Ser Visto Como Uma Obra de Arte</h2>
-      <p>Agende sua sessão fotográfica presencial em Ubatuba com Sukha Campos.</p>
-      <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20agendar%20uma%20sessão%20de%20captação%20presencial." class="cta">Agendar Agora no WhatsApp</a>
-    </div>
-  </section>
-
-  <!-- Rodapé -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Entre Nós</h3>
-        <p>Fotografia Imobiliária e Virtual Staging com IA</p>
-        <p><strong>Sukha Campos</strong></p>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Contato</h3>
-        <p>📞 <a href="https://wa.me/5511961726800?text=Olá%20Sukha!">(11) 96172-6800</a></p>
-        <p>📧 <a href="mailto:entrenos.solucoes@gmail.com">entrenos.solucoes@gmail.com</a></p>
-        <p>📍 Ubatuba, SP — Atendimento nacional</p>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Redes</h3>
-        <p><a href="https://instagram.com/sukhacampos" target="_blank">@sukhacampos</a></p>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Entre Nós. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+    </footer>
 </body>
 </html>
