@@ -132,6 +132,65 @@
             margin-bottom: 1rem;
         }
 
+        /* Before/After Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .comparison-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 169, 110, 0.1);
+            transition: 0.3s;
+        }
+
+        .comparison-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .comparison-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .comparison-label {
+            padding: 0.8rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .label-before {
+            background: rgba(255, 100, 100, 0.1);
+            color: #ff6464;
+        }
+
+        .label-after {
+            background: rgba(100, 255, 100, 0.1);
+            color: #64ff64;
+        }
+
+        /* Video Section */
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
         /* Packages */
         .grid {
             display: grid;
@@ -236,7 +295,12 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-links {
+                display: none;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -252,15 +316,13 @@
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <h1>Sua vitrine de imóveis em um novo patamar de desejo</h1>
-            <p>Transformação visual escalonável para imobiliárias e corretores de todo o Brasil. Edição profissional e staging virtual com entrega recorde.</p>
-            <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20a%20Edição%20Remota." class="btn">Solicitar Orçamento</a>
-        </div>
-    </header>
+    <div class="hero">
+        <h1>Sua vitrine de imóveis em um novo patamar de desejo</h1>
+        <p>Transformação visual escalonável para imobiliárias e corretores de todo o Brasil. Edição profissional e staging virtual com entrega recorde.</p>
+        <a href="https://wa.me/5511961726800?text=Olá%20Sukha!%20Quero%20saber%20mais%20sobre%20a%20Edição%20Remota." class="btn">Solicitar Orçamento</a>
+    </div>
 
-    <section class="section">
+    <div class="section">
         <div class="container">
             <h2 class="section-title">Como Funciona o Fluxo Remoto</h2>
             <div class="flow-grid">
@@ -285,12 +347,102 @@
                     <p>Você recebe o material pronto para postar nos portais e redes sociais.</p>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="section" style="background: #0d0d0d;">
+        <div class="container">
+            <h2 class="section-title">Antes & Depois: Virtual Staging</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 3rem; font-size: 1.1rem;">Veja a transformação que fazemos nos seus imóveis</p>
+            
+            <div class="video-container">
+                <video controls autoplay muted loop>
+                    <source src="Finalizado_2.mp4" type="video/mp4">
+                    Seu navegador não suporta a reprodução de vídeo.
+                </video>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Par 0 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(0).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(0).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+
+                <!-- Par 1 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(1).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(1).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+
+                <!-- Par 2 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(2).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(2).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+
+                <!-- Par 3 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(3).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(3).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+
+                <!-- Par 4 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(4).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(4).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+
+                <!-- Par 5 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(5).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(5).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+
+                <!-- Par 6 -->
+                <div class="comparison-card">
+                    <img src="Sem%20homestaging%20(6).png" alt="Antes do Virtual Staging">
+                    <div class="comparison-label label-before">ANTES</div>
+                </div>
+                <div class="comparison-card">
+                    <img src="Com%20homestaging%20(6).png" alt="Depois do Virtual Staging">
+                    <div class="comparison-label label-after">DEPOIS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
             <h2 class="section-title">Pacotes Mensais</h2>
             <div class="grid">
                 <div class="card">
                     <h3>Plano STARTER</h3>
-                    <div class="price">R$ 497<small>/mês</small></div>
+                    <div class="price">R$ 497/mês</div>
                     <ul>
                         <li>Até 5 imóveis/mês</li>
                         <li>Edição Profissional (Luz e Cor)</li>
@@ -301,7 +453,7 @@
                 </div>
                 <div class="card">
                     <h3>Plano MOVER</h3>
-                    <div class="price">R$ 897<small>/mês</small></div>
+                    <div class="price">R$ 897/mês</div>
                     <ul>
                         <li>Até 12 imóveis/mês</li>
                         <li>Edição Premium</li>
@@ -312,7 +464,7 @@
                 </div>
                 <div class="card">
                     <h3>Plano SCALE</h3>
-                    <div class="price">R$ 1.597<small>/mês</small></div>
+                    <div class="price">R$ 1.597/mês</div>
                     <ul>
                         <li>Imóveis Ilimitados</li>
                         <li>Full Editing + AI Upscale</li>
@@ -323,15 +475,15 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <footer>
-        <p>&copy; 2024 Entre Nós - Por Sukha Campos. Atendimento Nacional.</p>
+        <p>© 2024 Entre Nós - Por Sukha Campos. Atendimento Nacional.</p>
     </footer>
 
-    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank">
-        <svg viewBox="0 0 32 32" style="width: 32px; height: 32px; fill: white;">
-            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.483 2.017 7.791l-2.017 7.209 7.391-1.938c2.197 1.154 4.704 1.812 7.375 1.812 8.837 0 16-7.163 16-16s-7.163-16-16-16zm9.25 21.625c-0.38 1.066-1.9 1.956-2.612 2.069-0.712 0.113-1.637 0.206-4.737-1.069-3.95-1.625-6.5-5.637-6.7-5.9-0.2-0.263-1.612-2.144-1.612-4.088 0-1.944 1.012-2.9 1.375-3.287 0.363-0.387 0.787-0.487 1.05-0.487s0.525 0.013 0.75 0.025c0.237 0.012 0.55-0.088 0.863 0.663 0.325 0.75 1.113 2.713 1.213 2.913s0.162 0.425 0.012 0.725c-0.15 0.3-0.225 0.487-0.45 0.75s-0.475 0.588-0.675 0.8c-0.225 0.237-0.463 0.5-0.2 0.95 0.263 0.45 1.163 1.913 2.5 3.1 1.713 1.525 3.163 2 3.613 2.213 0.45 0.213 0.713 0.175 0.975-0.125 0.263-0.3 1.125-1.313 1.425-1.763 0.3-0.45 0.6-0.375 1-0.225s2.513 1.188 2.938 1.4 0.713 0.325 0.813 0.5c0.1 0.175 0.1 1-0.28 2.063z"/>
+    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.163 0 0 7.163 0 16C0 18.8999 0.831 21.6066 2.26562 23.8984L0.0859375 31.1875L7.61328 29.0508C9.83464 30.3506 12.3763 31.0918 15.0898 31.0918H16C24.837 31.0918 32 23.9288 32 15.0918C32 6.25481 24.837 0 16 0ZM16 2.5C23.5556 2.5 29.5 8.44444 29.5 16C29.5 22.6367 23.5556 28.5918 16 28.5918H15.0898C12.6888 28.5918 10.3848 27.9473 8.375 26.75L7.73438 26.3711L3.28125 27.5L4.42969 23.1836L3.99219 22.5117C2.66276 20.3938 1.90625 17.9727 1.90625 15.5C1.90625 7.94444 7.85069 2.5 15.4063 2.5H16ZM10.8359 8.73438C10.5885 8.73438 10.1953 8.82682 9.86719 9.20312C9.53906 9.57943 8.625 10.4336 8.625 12.1758C8.625 13.918 9.90234 15.5938 10.0898 15.8398C10.2773 16.0859 12.6888 19.8945 16.4102 21.3438C19.5326 22.5651 20.1328 22.3203 20.7773 22.2539C21.4219 22.1875 22.8711 21.4102 23.1836 20.5977C23.4961 19.7852 23.4961 19.1055 23.4102 18.9531C23.3242 18.8008 23.0781 18.7148 22.7148 18.5273C22.3516 18.3398 20.6094 17.4883 20.2812 17.3672C19.9531 17.2461 19.707 17.1914 19.4609 17.5547C19.2148 17.918 18.5352 18.7148 18.3125 18.9609C18.0898 19.207 17.8672 19.2422 17.5039 19.0547C17.1406 18.8672 15.9883 18.4844 14.6172 17.2461C13.5456 16.2773 12.8281 15.082 12.6055 14.7188C12.3828 14.3555 12.5781 14.1523 12.7656 13.9648C12.9349 13.7956 13.1289 13.5273 13.3164 13.3047C13.5039 13.082 13.5547 12.9258 13.6758 12.6797C13.7969 12.4336 13.7422 12.2109 13.6484 12.0234C13.5547 11.8359 12.8633 10.082 12.5352 9.35547C12.207 8.62891 11.8789 8.73438 11.6328 8.73438C11.3867 8.73438 11.1406 8.73438 10.8945 8.73438H10.8359Z" fill="currentColor"/>
         </svg>
     </a>
 
