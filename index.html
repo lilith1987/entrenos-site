@@ -1,422 +1,277 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entre Nós | Fotografia Imobiliária e Virtual Staging</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --bg2: #111;
-            --surface: #1a1a1a;
-            --accent: #c9a96e;
-            --text: #e0e0e0;
-            --text-dim: #a0a0a0;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entre Nós | Fotografia Imobiliária e Virtual Staging</title>
+  //fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111;
+      --surface: #1a1a1a;
+      --accent: #c9a96e;
+      --text: #e0e0e0;
+      --text-dim: #a0a0a0;
+      --white: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+    nav {
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,10,0.95);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+    }
+    .logo { font-weight: 800; font-size: 1.5rem; color: var(--accent); text-decoration: none; letter-spacing: -1px; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 5%;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    .hero h1 { font-size: clamp(3rem,8vw,5.5rem); font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 2rem; letter-spacing: -2px; }
+    .hero p { font-size: 1.25rem; color: var(--text-dim); max-width: 700px; margin-bottom: 3rem; }
 
-        /* Nav */
-        nav {
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 10, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(201, 169, 110, 0.1);
-        }
+    .section { padding: 8rem 5%; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 4rem; color: var(--white); }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .problem-text h2 { color: var(--accent); margin-bottom: 1.5rem; }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 900;
-            color: var(--white);
-            line-height: 1;
-            margin-bottom: 2rem;
-            letter-spacing: -2px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-dim);
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-
-        /* Sections */
-        .section {
-            padding: 8rem 5%;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 4rem;
-            color: var(--white);
-        }
-
-        /* Problem Section */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .problem-text h2 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Solutions Cards */
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-                /* ── SLIDER ANTES / DEPOIS ── */
-    .ba-wrapper {
+    /* ── COMPARADOR ANTES/DEPOIS ── */
+    .comparador-wrapper {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
-      border-radius: 16px;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
-      border: 1px solid rgba(201,169,110,0.25);
-      cursor: ew-resize;
-      user-select: none;
+      border-radius: 8px;
+      background-color: #111;
     }
-    .ba-wrapper img {
+
+    .img-antes, .img-depois {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      display: block;
-      pointer-events: none;
     }
-    .ba-after {
-      clip-path: inset(0 50% 0 0);
+
+    .img-depois-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
     }
-    .ba-divider {
+
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+      z-index: 10;
+    }
+
+    .slider-linha {
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translateX(-50%);
       width: 3px;
       height: 100%;
-      background: var(--accent);
-      z-index: 10;
+      background-color: #d4af37;
+      transform: translateX(-50%);
       pointer-events: none;
+      z-index: 5;
     }
-    .ba-handle {
+
+    .slider-botao {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 46px;
-      height: 46px;
-      background: var(--accent);
+      width: 40px;
+      height: 40px;
+      background-color: #d4af37;
       border-radius: 50%;
-      z-index: 11;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #111;
+      font-weight: 900;
       pointer-events: none;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      z-index: 6;
     }
-    .ba-handle svg { width: 22px; height: 22px; fill: #000; }
-    .ba-label {
+
+    .label {
       position: absolute;
-      top: 14px;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      padding: 4px 12px;
+      top: 15px;
+      padding: 6px 16px;
       border-radius: 20px;
-      z-index: 12;
-      pointer-events: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      font-family: sans-serif;
+      color: white;
+      z-index: 4;
     }
-    .ba-label-before { left: 14px; background: rgba(0,0,0,0.55); color: #ff8080; border: 1px solid rgba(255,128,128,0.4); }
-    .ba-label-after  { right: 14px; background: rgba(0,0,0,0.55); color: #80ffb0; border: 1px solid rgba(128,255,176,0.4); }
-            gap: 2rem;
-        }
 
-        .card {
-            background: var(--surface);
-            padding: 3rem;
-            border-radius: 16px;
-            border: 1px solid rgba(201, 169, 110, 0.05);
-            transition: 0.4s;
-            text-decoration: none;
-            color: inherit;
-        }
+    .label-antes {
+      right: 15px;
+      background-color: rgba(150, 40, 40, 0.8);
+      border: 1px solid rgba(255,100,100, 0.5);
+    }
 
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-            background: #222;
-        }
+    .label-depois {
+      left: 15px;
+      background-color: rgba(40, 100, 40, 0.8);
+      border: 1px solid rgba(100,200,100, 0.5);
+    }
 
-        .card h3 {
-            color: var(--accent);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
+    .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .card { background: var(--surface); padding: 3rem; border-radius: 16px; border: 1px solid rgba(201,169,110,0.05); transition: 0.4s; text-decoration: none; color: inherit; }
+    .card:hover { border-color: var(--accent); transform: translateY(-10px); background: #222; }
+    .card h3 { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; }
 
-        .btn {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--accent);
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+    .btn { display: inline-block; padding: 1.2rem 3rem; background: var(--accent); color: #000; text-decoration: none; font-weight: 700; border-radius: 8px; transition: 0.3s; }
+    .btn:hover { background: var(--white); transform: scale(1.05); }
 
-        .btn:hover {
-            background: var(--white);
-            transform: scale(1.05);
-        }
+    .whatsapp-float {
+      position: fixed; bottom: 30px; right: 30px;
+      background-color: #25d366; color: #FFF;
+      border-radius: 50px; text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 9999; width: 60px; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
 
-        /* WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+    footer { padding: 6rem 5% 4rem; text-align: center; border-top: 1px solid rgba(201,169,110,0.1); }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #128c7e;
-        }
-
-        footer {
-            padding: 6rem 5% 4rem;
-            text-align: center;
-            border-top: 1px solid rgba(201, 169, 110, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .problem-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .problem-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">ENTRE NÓS</a>
-        <div class="nav-links">
-            <a href="index.html">Início</a>
-            <a href="consultoria.html">Consultoria IA</a>
-            <a href="remoto.html">Edição Remota</a>
-            <a href="presencial.html">Captação Presencial</a>
-                        <a href="portfolio.html">Portfólio</a>
-        </div>
-    </nav>
+<nav>
+  <a href="index.html" class="logo">ENTRE NÓS</a>
+  <div class="nav-links">
+    <a href="index.html">Início</a>
+    <a href="consultoria.html">Consultoria IA</a>
+    <a href="remoto.html">Edição Remota</a>
+    <a href="presencial.html">Captação Presencial</a>
+    <a href="portfolio.html">Portfólio</a>
+  </div>
+</nav>
 
-    <header class="hero">
-        <h1>Seus imóveis merecem ser desejados.</h1>
-        <p>Transformamos a apresentação de imóveis através de fotografia estratégica, virtual staging e tecnologia de ponta para acelerar suas vendas.</p>
-        <a href="#solucoes" class="btn">Conhecer Soluções</a>
-    </header>
+<!-- HERO -->
+<section class="hero">
+  <h1>Seus imóveis merecem<br>ser desejados.</h1>
+  <p>Transformamos a apresentação de imóveis através de fotografia estratégica, virtual staging e tecnologia de ponta para acelerar suas vendas.</p>
+  <a href="#solucoes" class="btn">Conhecer Soluções</a>
+</section>
 
-    <section class="section">
-        <div class="container problem-grid">
-            <div class="problem-text">
-                <h2>O Mercado Mudou</h2>
-                <p>90% das buscas por imóveis começam na internet. Se a sua primeira impressão não for impactante, você já perdeu o cliente. Fotos amadoras e ambientes vazios transmitem descaso e desvalorizam o patrimônio.</p>
-                <p style="margin-top: 1rem;">Nós resolvemos a dor da baixa conversão entregando imagens que vendem o estilo de vida, não apenas metros quadrados.</p>
-            </div>
-            <div style="background: var(--surface); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--accent);">      <!-- SLIDER ANTES/DEPOIS -->
-      <div class="ba-wrapper" id="baSlider">
-        <img class="ba-before" src="antes1.png" alt="Antes do Home Staging">
-        <img class="ba-after"  src="depois1.png" alt="Depois do Home Staging">
-        <div class="ba-divider" id="baDivider"></div>
-        <div class="ba-handle"  id="baHandle">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5l-7 7 7 7V5zm8 0v14l7-7-7-7z"/>
-          </svg>
-        </div>
-        <span class="ba-label ba-label-before">ANTES</span>
-        <span class="ba-label ba-label-after">DEPOIS</span>
+<!-- O MERCADO MUDOU -->
+<section class="section">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text">
+        <h2>O Mercado Mudou</h2>
+        <p style="color:var(--text-dim); margin-bottom:1.2rem;">
+          90% das buscas por imóveis começam na internet. Se a sua primeira impressão não for impactante, você já perdeu o cliente. Fotos amadoras e ambientes vazios transmitem descaso e desvalorizam o patrimônio.
+        </p>
+        <p style="color:var(--text-dim);">
+          Nós resolvemos a dor da baixa conversão entregando imagens que vendem o estilo de vida, não apenas metros quadrados.
+        </p>
       </div>
 
-                      <p style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-top:0.8rem;">→ Arraste para comparar antes e depois ←</p>
-    </section>
+      <!-- ── COMPARADOR ── -->
+      <div class="comparador-wrapper">
+        <img src="antes1.png" alt="Ambiente Vazio" class="img-antes">
+        <div class="label label-antes">ANTES</div>
 
-    <section id="solucoes" class="section" style="background: var(--bg2);">
-        <div class="container">
-            <h2 class="section-title">Como Podemos Ajudar</h2>
-            <div class="solutions-grid">
-                <a href="consultoria.html" class="card">
-                    <h3>Consultoria de Captação & IA</h3>
-                    <p>Treinamos sua equipe para extrair o máximo do celular e usar IA no dia a dia, otimizando o workflow interno.</p>
-                    <span style="display: block; margin-top: 1.5rem; color: var(--accent); font-weight: 600;">Saiba Mais →</span>
-                </a>
-                <a href="remoto.html" class="card">
-                    <h3>Edição & Virtual Staging Remoto</h3>
-                    <p>Envie suas fotos e receba o material editado profissionalmente com mobília virtual em até 48 horas.</p>
-                    <span style="display: block; margin-top: 1.5rem; color: var(--accent); font-weight: 600;">Saiba Mais →</span>
-                </a>
-                <a href="presencial.html" class="card">
-                    <h3>Captação Presencial Premium</h3>
-                    <p>Produção completa de fotos e vídeos cinematográficos para imóveis exclusivos e de alto padrão.</p>
-                    <span style="display: block; margin-top: 1.5rem; color: var(--accent); font-weight: 600;">Saiba Mais →</span>
-                </a>
-            </div>
+        <div class="img-depois-container">
+          <img src="depois1.png" alt="Depois do Home Staging" class="img-depois">
+          <div class="label label-depois">DEPOIS</div>
         </div>
-    </section>
 
-    <section class="section">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title">Quem Somos</h2>
-            <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; color: var(--text-dim);">
-                Com 10 anos de experiência em imagem, 8 anos dedicados ao mercado imobiliário e 3 anos vivenciando o dia a dia dentro de uma imobiliária, <strong>Sukha Campos</strong> fundou a Entre Nós para elevar o padrão da apresentação imobiliária brasileira.
-            </p>
-            <p style="color: var(--accent); font-weight: 600;">Sukha Campos da Entre Nós</p>
-                        <div style="text-align: center; margin: 3rem 0;">
-                <img src="Foto%20Sukha%20Campos.jpg" alt="Sukha Campos - Fundadora Entre Nós" style="width: 300px; height: 300px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 8px 24px rgba(201, 169, 110, 0.3);">
-            </div>
+        <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+
+        <div class="slider-linha"></div>
+        <div class="slider-botao">
+          <span>&lt; &gt;</span>
         </div>
-    </section>
+      </div>
+    </div>
+      <p style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-top:0.8rem;">→ Arraste para comparar antes e depois ←</p>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2026 Entre Nós. Atendimento em todo o Brasil. Base em Ubatuba, SP.</p>
-        <p style="margin-top: 1rem; font-size: 0.8rem;">entrenos.solucoes@gmail.com | (11) 96172-6800</p>
-    </footer>
+<!-- COMO PODEMOS AJUDAR -->
+<section class="section" id="solucoes" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">Como Podemos Ajudar</h2>
+    <div class="solutions-grid">
+      <a href="consultoria.html" class="card">
+        <h3>Consultoria de Captação & IA</h3>
+        <p style="color:var(--text-dim);">Treinamos sua equipe para extrair o máximo do celular e usar IA no dia a dia, otimizando o workflow interno.</p>
+        <p style="color:var(--accent); margin-top:1.5rem; font-weight:600;">Saiba Mais →</p>
+      </a>
+      <a href="remoto.html" class="card">
+        <h3>Edição & Virtual Staging Remoto</h3>
+        <p style="color:var(--text-dim);">Envie suas fotos e receba o material editado profissionalmente com mobília virtual em até 48 horas.</p>
+        <p style="color:var(--accent); margin-top:1.5rem; font-weight:600;">Saiba Mais →</p>
+      </a>
+      <a href="presencial.html" class="card">
+        <h3>Captação Presencial Premium</h3>
+        <p style="color:var(--text-dim);">Produção completa de fotos e vídeos cinematográficos para imóveis exclusivos e de alto padrão.</p>
+        <p style="color:var(--accent); margin-top:1.5rem; font-weight:600;">Saiba Mais →</p>
+      </a>
+    </div>
+  </div>
+</section>
 
-    <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank">
-        <svg viewBox="0 0 32 32" style="width: 32px; height: 32px; fill: white;">
-            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.483 2.017 7.791l-2.017 7.209 7.391-1.938c2.197 1.154 4.704 1.812 7.375 1.812 8.837 0 16-7.163 16-16s-7.163-16-16-16zm9.25 21.625c-0.38 1.066-1.9 1.956-2.612 2.069-0.712 0.113-1.637 0.206-4.737-1.069-3.95-1.625-6.5-5.637-6.7-5.9-0.2-0.263-1.612-2.144-1.612-4.088 0-1.944 1.012-2.9 1.375-3.287 0.363-0.387 0.787-0.487 1.05-0.487s0.525 0.013 0.75 0.025c0.237 0.012 0.55-0.088 0.863 0.663 0.325 0.75 1.113 2.713 1.213 2.913s0.162 0.425 0.012 0.725c-0.15 0.3-0.225 0.487-0.45 0.75s-0.475 0.588-0.675 0.8c-0.225 0.237-0.463 0.5-0.2 0.95 0.263 0.45 1.163 1.913 2.5 3.1 1.713 1.525 3.163 2 3.613 2.213 0.45 0.213 0.713 0.175 0.975-0.125 0.263-0.3 1.125-1.313 1.425-1.763 0.3-0.45 0.6-0.375 1-0.225s2.513 1.188 2.938 1.4 0.713 0.325 0.813 0.5c0.1 0.175 0.1 1-0.28 2.063z"/>
-        </svg>
-    </a>
+<!-- QUEM SOMOS -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">Quem Somos</h2>
+    <p style="max-width:750px; color:var(--text-dim); font-size:1.05rem;">
+      Com 10 anos de experiência em imagem, 8 anos dedicados ao mercado imobiliário e 3 anos vivenciando o dia a dia dentro de uma imobiliária,
+      <strong style="color:var(--white);">Sukha Campos</strong> fundou a Entre Nós para elevar o padrão da apresentação imobiliária brasileira.
+    </p>
+  </div>
+</section>
 
-<script>
-  // ── SLIDER ANTES/DEPOIS ──
-  (function() {
-    const wrapper = document.getElementById('baSlider');
-    if (!wrapper) return;
+<footer>
+  <p style="color:var(--text-dim);">© 2026 Entre Nós. Atendimento em todo o Brasil. Base em Ubatuba, SP.</p>
+  <p style="color:var(--text-dim); margin-top:0.5rem;">entrenos.solucoes@gmail.com | (11) 96172-6800</p>
+</footer>
 
-    const after = wrapper.querySelector('.ba-after');
-    const divider = document.getElementById('baDivider');
-    const handle = document.getElementById('baHandle');
-
-    let isDragging = false;
-
-    function updateSlider(x) {
-      const rect = wrapper.getBoundingClientRect();
-      let percent = ((x - rect.left) / rect.width) * 100;
-      if (percent < 0) percent = 0;
-      if (percent > 100) percent = 100;
-
-      after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-      divider.style.left = percent + '%';
-      handle.style.left = percent + '%';
-    }
-
-    // Mouse
-    wrapper.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      updateSlider(e.clientX);
-    });
-
-    document.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-      updateSlider(e.clientX);
-    });
-
-    document.addEventListener('mouseup', function() {
-      isDragging = false;
-    });
-
-    // Touch
-    wrapper.addEventListener('touchstart', function(e) {
-      isDragging = true;
-      updateSlider(e.touches[0].clientX);
-    }, { passive: true });
-
-    document.addEventListener('touchmove', function(e) {
-      if (!isDragging) return;
-      updateSlider(e.touches[0].clientX);
-    }, { passive: true });
-
-    document.addEventListener('touchend', function() {
-      isDragging = false;
-    });
-  })();
-</script>
-
-            </body>
-</html>
+<a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074
