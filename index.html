@@ -131,6 +131,70 @@
         .solutions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+                /* ── SLIDER ANTES / DEPOIS ── */
+    .ba-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(201,169,110,0.25);
+      cursor: ew-resize;
+      user-select: none;
+    }
+    .ba-wrapper img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+    .ba-after {
+      clip-path: inset(0 50% 0 0);
+    }
+    .ba-divider {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 46px;
+      height: 46px;
+      background: var(--accent);
+      border-radius: 50%;
+      z-index: 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+    .ba-handle svg { width: 22px; height: 22px; fill: #000; }
+    .ba-label {
+      position: absolute;
+      top: 14px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      z-index: 12;
+      pointer-events: none;
+    }
+    .ba-label-before { left: 14px; background: rgba(0,0,0,0.55); color: #ff8080; border: 1px solid rgba(255,128,128,0.4); }
+    .ba-label-after  { right: 14px; background: rgba(0,0,0,0.55); color: #80ffb0; border: 1px solid rgba(128,255,176,0.4); }
             gap: 2rem;
         }
 
@@ -235,10 +299,19 @@
                 <p>90% das buscas por imóveis começam na internet. Se a sua primeira impressão não for impactante, você já perdeu o cliente. Fotos amadoras e ambientes vazios transmitem descaso e desvalorizam o patrimônio.</p>
                 <p style="margin-top: 1rem;">Nós resolvemos a dor da baixa conversão entregando imagens que vendem o estilo de vida, não apenas metros quadrados.</p>
             </div>
-            <div style="background: var(--surface); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--accent);">
-                <span style="color: var(--accent);">[Imagem Comparativa: Antes vs Depois]</span>
-            </div>
+            <div style="background: var(--surface); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--accent);">      <!-- SLIDER ANTES/DEPOIS -->
+      <div class="ba-wrapper" id="baSlider">
+        <img class="ba-before" src="antes1.png" alt="Antes do Home Staging">
+        <img class="ba-after"  src="depois1.png" alt="Depois do Home Staging">
+        <div class="ba-divider" id="baDivider"></div>
+        <div class="ba-handle"  id="baHandle">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5l-7 7 7 7V5zm8 0v14l7-7-7-7z"/>
+          </svg>
         </div>
+        <span class="ba-label ba-label-before">ANTES</span>
+        <span class="ba-label ba-label-after">DEPOIS</span>
+      </div>
     </section>
 
     <section id="solucoes" class="section" style="background: var(--bg2);">
@@ -288,5 +361,60 @@
         </svg>
     </a>
 
-</body>
+<script>
+  // ── SLIDER ANTES/DEPOIS ──
+  (function() {
+    const wrapper = document.getElementById('baSlider');
+    if (!wrapper) return;
+
+    const after = wrapper.querySelector('.ba-after');
+    const divider = document.getElementById('baDivider');
+    const handle = document.getElementById('baHandle');
+
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = wrapper.getBoundingClientRect();
+      let percent = ((x - rect.left) / rect.width) * 100;
+      if (percent < 0) percent = 0;
+      if (percent > 100) percent = 100;
+
+      after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      divider.style.left = percent + '%';
+      handle.style.left = percent + '%';
+    }
+
+    // Mouse
+    wrapper.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mouseup', function() {
+      isDragging = false;
+    });
+
+    // Touch
+    wrapper.addEventListener('touchstart', function(e) {
+      isDragging = true;
+      updateSlider(e.touches[0].clientX);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+      if (!isDragging) return;
+      updateSlider(e.touches[0].clientX);
+    }, { passive: true });
+
+    document.addEventListener('touchend', function() {
+      isDragging = false;
+    });
+  })();
+</script>
+
+            </body>
 </html>
