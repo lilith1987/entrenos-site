@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entre Nós - Fotografia imobiliária profissional, virtual staging com IA e produção audiovisual para acelerar suas vendas. Base em Ubatuba, SP.">
   <title>Entre Nós | Fotografia Imobiliária e Virtual Staging</title>
-  //fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0a0a;
@@ -17,7 +18,6 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-
     nav {
       padding: 1.5rem 5%;
       display: flex;
@@ -34,7 +34,6 @@
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
     .nav-links a:hover { color: var(--accent); }
-
     .hero {
       height: 100vh;
       display: flex;
@@ -47,15 +46,12 @@
     }
     .hero h1 { font-size: clamp(3rem,8vw,5.5rem); font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 2rem; letter-spacing: -2px; }
     .hero p { font-size: 1.25rem; color: var(--text-dim); max-width: 700px; margin-bottom: 3rem; }
-
     .section { padding: 8rem 5%; }
     .container { max-width: 1200px; margin: 0 auto; }
     .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 4rem; color: var(--white); }
-
     .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .problem-text h2 { color: var(--accent); margin-bottom: 1.5rem; }
-
-    /* ── COMPARADOR ANTES/DEPOIS ── */
+    /* COMPARADOR ANTES/DEPOIS */
     .comparador-wrapper {
       position: relative;
       width: 100%;
@@ -64,56 +60,37 @@
       overflow: hidden;
       border-radius: 8px;
       background-color: #111;
+      cursor: ew-resize;
+      user-select: none;
+      touch-action: none;
     }
-
     .img-antes, .img-depois {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
+      pointer-events: none;
     }
-
     .img-depois-container {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
     }
-
-    .slider {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: ew-resize;
-      z-index: 10;
-    }
-
     .slider-linha {
       position: absolute;
-      top: 0;
-      left: 50%;
-      width: 3px;
-      height: 100%;
+      top: 0; left: 50%;
+      width: 3px; height: 100%;
       background-color: #d4af37;
       transform: translateX(-50%);
       pointer-events: none;
       z-index: 5;
     }
-
     .slider-botao {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
+      width: 44px; height: 44px;
       background-color: #d4af37;
       border-radius: 50%;
       display: flex;
@@ -121,10 +98,10 @@
       justify-content: center;
       color: #111;
       font-weight: 900;
+      font-size: 1rem;
       pointer-events: none;
       z-index: 6;
     }
-
     .label {
       position: absolute;
       top: 15px;
@@ -132,176 +109,167 @@
       border-radius: 20px;
       font-size: 0.8rem;
       font-weight: bold;
-      font-family: sans-serif;
       color: white;
       z-index: 4;
+      pointer-events: none;
     }
-
-    .label-antes {
-      left: 15px;
-      background-color: rgba(150, 40, 40, 0.8);
-      border: 1px solid rgba(255,100,100, 0.5);
-    }
-
-    .label-depois {
-      right: 15px;
-      background-color: rgba(40, 100, 40, 0.8);
-      border: 1px solid rgba(100,200,100, 0.5);
-    }
-
+    .label-antes { left: 15px; background-color: rgba(150,40,40,0.8); border: 1px solid rgba(255,100,100,0.5); }
+    .label-depois { right: 15px; background-color: rgba(40,100,40,0.8); border: 1px solid rgba(100,200,100,0.5); }
+    .comparador-hint { text-align: center; color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem; }
     .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: var(--surface); padding: 3rem; border-radius: 16px; border: 1px solid rgba(201,169,110,0.05); transition: 0.4s; text-decoration: none; color: inherit; }
+    .card { background: var(--surface); padding: 3rem; border-radius: 16px; border: 1px solid rgba(201,169,110,0.05); transition: 0.4s; text-decoration: none; color: inherit; display: block; }
     .card:hover { border-color: var(--accent); transform: translateY(-10px); background: #222; }
     .card h3 { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; }
-
     .btn { display: inline-block; padding: 1.2rem 3rem; background: var(--accent); color: #000; text-decoration: none; font-weight: 700; border-radius: 8px; transition: 0.3s; }
     .btn:hover { background: var(--white); transform: scale(1.05); }
-
     .whatsapp-float {
-      position: fixed; bottom: 30px; right: 30px;
-      background-color: #25d366; color: #FFF;
-      border-radius: 50px; text-align: center;
+      position: fixed;
+      bottom: 30px; right: 30px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50%;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 9999; width: 60px; height: 60px;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; transition: all 0.3s ease;
+      z-index: 9999;
+      width: 60px; height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
     .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
-
     footer { padding: 6rem 5% 4rem; text-align: center; border-top: 1px solid rgba(201,169,110,0.1); }
-
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .problem-grid { grid-template-columns: 1fr; }
+      .section { padding: 5rem 5%; }
+      .hero h1 { letter-spacing: -1px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo">ENTRE NÓS</a>
-  <div class="nav-links">
-    <a href="index.html">Início</a>
-    <a href="consultoria.html">Consultoria IA</a>
-    <a href="remoto.html">Edição Remota</a>
-    <a href="presencial.html">Captação Presencial</a>
-    <a href="portfolio.html">Portfólio</a>
-  </div>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">ENTRE NÓS</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="consultoria.html">Consultoria IA</a>
+      <a href="remoto.html">Edição Remota</a>
+      <a href="presencial.html">Captação Presencial</a>
+      <a href="portfolio.html">Portfólio</a>
+    </div>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Seus imóveis merecem<br>ser desejados.</h1>
-  <p>Transformamos a apresentação de imóveis através de fotografia estratégica, virtual staging e tecnologia de ponta para acelerar suas vendas.</p>
-  <a href="#solucoes" class="btn">Conhecer Soluções</a>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Seus imóveis merecem <br>ser desejados.</h1>
+    <p>Transformamos a apresentação de imóveis através de fotografia estratégica, virtual staging e tecnologia de ponta para acelerar suas vendas.</p>
+    <a href="#solucoes" class="btn">Conhecer Soluções</a>
+  </section>
 
-<!-- O MERCADO MUDOU -->
-<section class="section">
-  <div class="container">
-    <div class="problem-grid">
-      <div class="problem-text">
-        <h2>O Mercado Mudou</h2>
-        <p style="color:var(--text-dim); margin-bottom:1.2rem;">
-          90% das buscas por imóveis começam na internet. Se a sua primeira impressão não for impactante, você já perdeu o cliente. Fotos amadoras e ambientes vazios transmitem descaso e desvalorizam o patrimônio.
-        </p>
-        <p style="color:var(--text-dim);">
-          Nós resolvemos a dor da baixa conversão entregando imagens que vendem o estilo de vida, não apenas metros quadrados.
-        </p>
-      </div>
-
-      <!-- ── COMPARADOR ── -->
-      <div class="comparador-wrapper">
-        <img src="antes1.png" alt="Ambiente Vazio" class="img-antes">
-        <div class="label label-antes">ANTES</div>
-
-        <div class="img-depois-container">
-          <img src="depois1.png" alt="Depois do Home Staging" class="img-depois">
-          <div class="label label-depois">DEPOIS</div>
+  <!-- O MERCADO MUDOU -->
+  <section class="section">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="problem-text">
+          <h2 class="section-title">O Mercado Mudou</h2>
+          <p>90% das buscas por imóveis começam na internet. Se a sua primeira impressão não for impactante, você já perdeu o cliente. Fotos amadoras e ambientes vazios transmitem descaso e desvalorizam o patrimônio.</p>
+          <br>
+          <p>Nós resolvemos a dor da baixa conversão entregando imagens que vendem o estilo de vida, não apenas metros quadrados.</p>
         </div>
-
-        <input type="range" min="0" max="100" value="50" class="slider" id="slider">
-
-        <div class="slider-linha"></div>
-        <div class="slider-botao">
-          <span>&lt; &gt;</span>
+        <div>
+          <div class="comparador-wrapper" id="comparador">
+            <img src="antes1.png" alt="Ambiente vazio antes do home staging" class="img-antes">
+            <div class="img-depois-container">
+              <img src="depois1.png" alt="Ambiente decorado com virtual staging" class="img-depois">
+            </div>
+            <div class="slider-linha" id="slider-linha"></div>
+            <div class="slider-botao" id="slider-botao">&lt;&gt;</div>
+            <span class="label label-antes">ANTES</span>
+            <span class="label label-depois">DEPOIS</span>
+          </div>
+          <p class="comparador-hint">→ Arraste para comparar antes e depois ←</p>
         </div>
       </div>
     </div>
-    <p style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-top:0.8rem;">→ Arraste para comparar antes e depois ←</p>
-  </div>
-</section>
+  </section>
 
-<!-- COMO PODEMOS AJUDAR -->
-<section class="section" id="solucoes" style="padding-top:0;">
-  <div class="container">
-    <h2 class="section-title">Como Podemos Ajudar</h2>
-    <div class="solutions-grid">
-      <a href="consultoria.html" class="card">
-        <h3>Consultoria de Captação & IA</h3>
-        <p style="color:var(--text-dim);">Treinamos sua equipe para extrair o máximo do celular e usar IA no dia a dia, otimizando o workflow interno.</p>
-        <p style="color:var(--accent); margin-top:1.5rem; font-weight:600;">Saiba Mais →</p>
-      </a>
-      <a href="remoto.html" class="card">
-        <h3>Edição & Virtual Staging Remoto</h3>
-        <p style="color:var(--text-dim);">Envie suas fotos e receba o material editado profissionalmente com mobília virtual em até 48 horas.</p>
-        <p style="color:var(--accent); margin-top:1.5rem; font-weight:600;">Saiba Mais →</p>
-      </a>
-      <a href="presencial.html" class="card">
-        <h3>Captação Presencial Premium</h3>
-        <p style="color:var(--text-dim);">Produção completa de fotos e vídeos cinematográficos para imóveis exclusivos e de alto padrão.</p>
-        <p style="color:var(--accent); margin-top:1.5rem; font-weight:600;">Saiba Mais →</p>
-      </a>
+  <!-- COMO PODEMOS AJUDAR -->
+  <section class="section" id="solucoes" style="background: var(--bg2);">
+    <div class="container">
+      <h2 class="section-title">Como Podemos Ajudar</h2>
+      <div class="solutions-grid">
+        <a href="consultoria.html" class="card">
+          <h3>Consultoria de Captação &amp; IA</h3>
+          <p>Treinamos sua equipe para extrair o máximo do celular e usar IA no dia a dia, otimizando o workflow interno.</p>
+          <br><span>Saiba Mais →</span>
+        </a>
+        <a href="remoto.html" class="card">
+          <h3>Edição &amp; Virtual Staging Remoto</h3>
+          <p>Envie suas fotos e receba o material editado profissionalmente com mobília virtual em até 48 horas.</p>
+          <br><span>Saiba Mais →</span>
+        </a>
+        <a href="presencial.html" class="card">
+          <h3>Captação Presencial Premium</h3>
+          <p>Produção completa de fotos e vídeos cinematográficos para imóveis exclusivos e de alto padrão.</p>
+          <br><span>Saiba Mais →</span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- QUEM SOMOS -->
-<section class="section" style="padding-top:0;">
-  <div class="container">
-    <h2 class="section-title">Quem Somos</h2>
-    <p style="max-width:750px; color:var(--text-dim); font-size:1.05rem;">
-      Com 10 anos de experiência em imagem, 8 anos dedicados ao mercado imobiliário e 3 anos vivenciando o dia a dia dentro de uma imobiliária,
-      <strong style="color:var(--white);">Sukha Campos</strong> fundou a Entre Nós para elevar o padrão da apresentação imobiliária brasileira.
-    </p>
-  </div>
-</section>
+  <!-- QUEM SOMOS -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <h2 class="section-title">Quem Somos</h2>
+      <p style="max-width:750px; color:var(--text-dim); font-size:1.05rem;">Com 10 anos de experiência em imagem, 8 anos dedicados ao mercado imobiliário e 3 anos vivenciando o dia a dia dentro de uma imobiliária, <strong style="color:var(--white);">Sukha Campos</strong> fundou a Entre Nós para elevar o padrão da apresentação imobiliária brasileira.</p>
+    </div>
+  </section>
 
-<footer>
-  <p style="color:var(--text-dim);">© 2026 Entre Nós. Atendimento em todo o Brasil. Base em Ubatuba, SP.</p>
-  <p style="color:var(--text-dim); margin-top:0.5rem;">entrenos.solucoes@gmail.com | (11) 96172-6800</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p style="color:var(--text-dim);">© 2026 Entre Nós. Atendimento em todo o Brasil. Base em Ubatuba, SP.</p>
+    <p style="color:var(--text-dim); margin-top:0.5rem;">entrenos.solucoes@gmail.com | (11) 96172-6800</p>
+  </footer>
 
-<a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.
-  </svg>
-      </a>
-<script>
-      const slider = document.getElementById('slider');
-      const imgDepois = document.querySelector('.img-depois-container');
-      const sliderLinha = document.querySelector('.slider-linha');
-      const sliderBotao = document.querySelector('.slider-botao');
-      const wrapper = document.querySelector('.comparador-wrapper');
+  <!-- WHATSAPP FLUTUANTE -->
+  <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.523 5.854L0 24l6.317-1.5A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.017-1.378l-.36-.214-3.732.886.916-3.618-.235-.372A9.818 9.818 0 1 1 12 21.818z"/>
+    </svg>
+  </a>
 
-      function atualizarSlider(valor) {
-        imgDepois.style.clipPath = `polygon(0 0, ${valor}% 0, ${valor}% 100%, 0 100%)`;
-        sliderLinha.style.left = `${valor}%`;
-        sliderBotao.style.left = `${valor}%`;
-      }
+  <script>
+    // ── COMPARADOR ANTES/DEPOIS ──
+    const wrapper   = document.getElementById('comparador');
+    const imgDepois = document.querySelector('.img-depois-container');
+    const linha     = document.getElementById('slider-linha');
+    const botao     = document.getElementById('slider-botao');
+    let arrastando  = false;
 
-      slider.addEventListener('input', (e) => {
-        atualizarSlider(e.target.value);
-      });
+    function mover(pct) {
+      pct = Math.max(0, Math.min(100, pct));
+      imgDepois.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      linha.style.left  = `${pct}%`;
+      botao.style.left  = `${pct}%`;
+    }
 
-      wrapper.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const rect = wrapper.getBoundingClientRect();
-        const x = e.touches[0].clientX - rect.left;
-        const valor = Math.min(100, Math.max(0, (x / rect.width) * 100));
-        slider.value = valor;
-        atualizarSlider(valor);
-      }, { passive: false });
-      </script>
-      </body>
-      </html>
+    function getPct(clientX) {
+      const r = wrapper.getBoundingClientRect();
+      return ((clientX - r.left) / r.width) * 100;
+    }
+
+    // Mouse events
+    wrapper.addEventListener('mousedown',  (e) => { arrastando = true;  mover(getPct(e.clientX)); });
+    window.addEventListener('mousemove',   (e) => { if (arrastando) mover(getPct(e.clientX)); });
+    window.addEventListener('mouseup',     ()  => { arrastando = false; });
+
+    // Touch events
+    wrapper.addEventListener('touchstart', (e) => { arrastando = true;  mover(getPct(e.touches[0].clientX)); }, { passive: true });
+    window.addEventListener('touchmove',   (e) => { if (arrastando) { e.preventDefault(); mover(getPct(e.touches[0].clientX)); } }, { passive: false });
+    window.addEventListener('touchend',    ()  => { arrastando = false; });
+  </script>
+</body>
+</html>
