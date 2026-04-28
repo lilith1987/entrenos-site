@@ -282,18 +282,23 @@ const slider = document.getElementById('slider');
 const imgDepois = document.querySelector('.img-depois-container');
 const sliderLinha = document.querySelector('.slider-linha');
 const sliderBotao = document.querySelector('.slider-botao');
+      const wrapper = document.querySelector('.comparador-wrapper');
+      let ativo = false;
 
-// Adiciona o ouvinte de evento para quando o slider for movido
-slider.addEventListener('input', (e) => {
-  const valor = e.target.value;
-  
-  // Atualiza o corte da imagem de cima (clip-path)
-  imgDepois.style.clipPath = `polygon(0 0, ${valor}% 0, ${valor}% 100%, 0 100%)`;
-  
-  // Move a linha e o botão junto com o input
-  sliderLinha.style.left = `${valor}%`;
-  sliderBotao.style.left = `${valor}%`;
-});
+      function moverComparador(x) {
+        const rect = wrapper.getBoundingClientRect();
+        let pct = ((x - rect.left) / rect.width) * 100;
+        pct = Math.max(0, Math.min(100, pct));
+        imgDepois.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+        sliderLinha.style.left = `${pct}%`;
+        sliderBotao.style.left = `${pct}%`;
+        slider.value = pct;
+      }
+
+wrapper.addEventListener('pointerdown', (e) => { ativo = true; wrapper.setPointerCapture(e.pointerId); moverComparador(e.clientX); });
+      wrapper.addEventListener('pointermove', (e) => { if (ativo) moverComparador(e.clientX); });
+      wrapper.addEventListener('pointerup', () => { ativo = false; });
+      wrapper.addEventListener('pointercancel', () => { ativo = false; });
 </script>
 
 </body>
