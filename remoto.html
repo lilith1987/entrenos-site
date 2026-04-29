@@ -132,49 +132,90 @@
             margin-bottom: 1rem;
         }
 
-        /* Before/After Gallery */
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             margin-bottom: 4rem;
         }
 
-        .comparison-card {
-            background: var(--surface);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(201, 169, 110, 0.1);
-            transition: 0.3s;
-        }
-
-        .comparison-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .comparison-card img {
+        /* COMPARADOR ANTES/DEPOIS */
+        .comparador-wrapper {
+            position: relative;
             width: 100%;
-            height: 200px;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #111;
+            cursor: ew-resize;
+            user-select: none;
+            touch-action: none;
+            border: 1px solid rgba(201, 169, 110, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        .comparador-wrapper:hover {
+            border-color: var(--accent);
+        }
+
+        .img-antes, .img-depois {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             object-fit: cover;
-            display: block;
+            pointer-events: none;
+        }
+        
+        .img-depois-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
         }
 
-        .comparison-label {
-            padding: 0.8rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.85rem;
+        .slider-linha {
+            position: absolute;
+            top: 0; left: 50%;
+            width: 3px; height: 100%;
+            background-color: var(--accent);
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 5;
         }
 
-        .label-before {
-            background: rgba(255, 100, 100, 0.1);
-            color: #ff6464;
+        .slider-botao {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px; height: 44px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            font-weight: 900;
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 6;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
 
-        .label-after {
-            background: rgba(100, 255, 100, 0.1);
-            color: #64ff64;
+        .label {
+            position: absolute;
+            top: 15px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            z-index: 4;
+            pointer-events: none;
         }
+        .label-antes { left: 15px; background-color: rgba(150,40,40,0.8); border: 1px solid rgba(255,100,100,0.5); }
+        .label-depois { right: 15px; background-color: rgba(40,100,40,0.8); border: 1px solid rgba(100,200,100,0.5); }
+        .comparador-hint { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 0.8rem; }
 
         /* Video Section */
         .video-container {
@@ -294,24 +335,21 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-        .gallery-grid {
-            grid-template-columns: 1fr 1fr;
-        }        }
+            .nav-links { display: none; }
+            .gallery-grid { grid-template-columns: 1fr; } 
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo">ENTRE NÓS</a>
+        <a href="index.html" class="logo"><span style="color:#fff">ENTRE </span><span style="color:var(--accent)">NÓS</span></a>
         <div class="nav-links">
             <a href="index.html">Início</a>
             <a href="consultoria.html">Consultoria IA</a>
             <a href="remoto.html">Edição Remota</a>
             <a href="presencial.html">Captação Presencial</a>
-                        <a href="portfolio.html">Portfólio</a>
+            <a href="portfolio.html">Portfólio</a>
         </div>
     </nav>
 
@@ -363,73 +401,108 @@
 
             <div class="gallery-grid">
                 <!-- Par 0 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(0).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(0).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(0).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(0).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
 
                 <!-- Par 1 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(1).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(1).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(1).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(1).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
 
                 <!-- Par 2 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(2).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(2).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(2).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(2).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
 
                 <!-- Par 3 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(3).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(3).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(3).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(3).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
 
                 <!-- Par 4 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(4).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(4).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(4).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(4).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
 
                 <!-- Par 5 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(5).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(5).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(5).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(5).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
 
                 <!-- Par 6 -->
-                <div class="comparison-card">
-                    <img src="Sem%20homestaging%20(6).png" alt="Antes do Virtual Staging">
-                    <div class="comparison-label label-before">ANTES</div>
-                </div>
-                <div class="comparison-card">
-                    <img src="Com%20homestaging%20(6).png" alt="Depois do Virtual Staging">
-                    <div class="comparison-label label-after">DEPOIS</div>
+                <div>
+                    <div class="comparador-wrapper">
+                        <img src="Com%20homestaging%20(6).png" alt="Depois do Virtual Staging" class="img-antes">
+                        <div class="img-depois-container">
+                            <img src="Sem%20homestaging%20(6).png" alt="Antes do Virtual Staging" class="img-depois">
+                        </div>
+                        <div class="slider-linha"></div>
+                        <div class="slider-botao">&lt;&gt;</div>
+                        <span class="label label-antes">ANTES</span>
+                        <span class="label label-depois">DEPOIS</span>
+                    </div>
+                    <p class="comparador-hint">→ Arraste para comparar ←</p>
                 </div>
             </div>
         </div>
@@ -477,7 +550,7 @@
     </div>
 
     <footer>
-        <p>© contato@ententrenos.solucoes@gmail.comrenos.com.br Entre Nós - Por Sukha Campos. Atendimento Nacional.</p>
+        <p>© 2026 Entre Nós - Por Sukha Campos. Atendimento Nacional. | entrenos.solucoes@gmail.com</p>
     </footer>
 
     <a href="https://wa.me/5511961726800?text=Olá%20Sukha!" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
@@ -486,5 +559,62 @@
         </svg>
     </a>
 
+    <script>
+        // ── SCRIPT DO COMPARADOR ANTES/DEPOIS PARA MÚLTIPLOS ELEMENTOS ──
+        const todosComparadores = document.querySelectorAll('.comparador-wrapper');
+
+        todosComparadores.forEach(wrapper => {
+            const imgDepoisContainer = wrapper.querySelector('.img-depois-container');
+            const linha = wrapper.querySelector('.slider-linha');
+            const botao = wrapper.querySelector('.slider-botao');
+
+            let arrastandoParaEste = false;
+
+            function moverIndividual(pct) {
+                pct = Math.max(0, Math.min(100, pct));
+                imgDepoisContainer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+                linha.style.left = `${pct}%`;
+                botao.style.left = `${pct}%`;
+            }
+
+            function getPctIndividual(clientX) {
+                const rect = wrapper.getBoundingClientRect();
+                return ((clientX - rect.left) / rect.width) * 100;
+            }
+
+            // Eventos de Mouse
+            wrapper.addEventListener('mousedown', (e) => {
+                arrastandoParaEste = true;
+                moverIndividual(getPctIndividual(e.clientX));
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (arrastandoParaEste) {
+                    moverIndividual(getPctIndividual(e.clientX));
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                arrastandoParaEste = false;
+            });
+
+            // Eventos de Toque (Mobile)
+            wrapper.addEventListener('touchstart', (e) => {
+                arrastandoParaEste = true;
+                moverIndividual(getPctIndividual(e.touches[0].clientX));
+            }, { passive: true });
+
+            window.addEventListener('touchmove', (e) => {
+                if (arrastandoParaEste) {
+                    if (e.cancelable) e.preventDefault();
+                    moverIndividual(getPctIndividual(e.touches[0].clientX));
+                }
+            }, { passive: false });
+
+            window.addEventListener('touchend', () => {
+                arrastandoParaEste = false;
+            });
+        });
+    </script>
 </body>
 </html>
